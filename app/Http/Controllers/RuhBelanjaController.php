@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komponen;
 use App\Models\RuhBelanja;
 use Illuminate\Http\Request;
 
@@ -112,7 +113,8 @@ class RuhBelanjaController extends Controller
     public function createRspp($id)
     {
         $data = RuhBelanja::findOrFail($id);
+        $komponen = Komponen::where('rspp_id', $data->id)->get();
         
-        return view('ruhBelanja.createRspp', ['data' => $data]);
+        return view('ruhBelanja.createRspp', ['data' => $data, 'komponen' => $komponen]);
     }
 }

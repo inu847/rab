@@ -35,39 +35,55 @@
 
 <div class='white-box'>
     <div class='row'>
-        <div class='col-sm-6'>
+        <div class='col-sm-12'>
             <h4 class='box-title'>Add RSPP</h4>
         </div>
         <form class="form-horizontal" action='{{ route('rspp.store') }}' method='POST' enctype='multipart/form-data'>
             @csrf
-            <div class='form-group'>
-                <label for='' class="col-md-12">Code</label>
-                <div class="col-md-12">
-                    <input type='text' class='form-control' name='code' id='' placeholder='Masukkan Code'>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" placeholder="Kegiatan">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" placeholder="KRO">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" placeholder="RO">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="">
+                    </div>
                 </div>
             </div>
-            <div class='form-group'>
-                <label for='' class="col-md-12">Program</label>
-                <div class="col-md-12">
-                    <input type='text' class='form-control' name='program' id='' placeholder='Masukkan Program'>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" placeholder="Komponen">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="">
+                    </div>
                 </div>
             </div>
-            <div class='form-group'>
-                <label for='' class="col-md-12">Kegiatan</label>
-                <div class="col-md-12">
-                    <input type='text' class='form-control' name='kegiatan' id='' placeholder='Masukkan Kegiatan'>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Judul Kegiatan">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="">
+                    </div>
                 </div>
             </div>
-            <div class='form-group'>
-                <label for='' class="col-md-12">Kro</label>
-                <div class="col-md-12">
-                    <input type='text' class='form-control' name='kro' id='' placeholder='Masukkan Kro'>
-                </div>
-            </div>
-            <div class='form-group'>
-                <label for='' class="col-md-12">Ro</label>
-                <div class="col-md-12">
-                    <input type='text' class='form-control' name='ro' id='' placeholder='Masukkan Ro'>
+            <div class="form-group col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="Akun">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" placeholder="">
+                    </div>
                 </div>
             </div>
 
@@ -84,7 +100,7 @@
         <table class="table table-responsive table-bordered table-striped">
             <thead style="background-color: #a7a7a7;">
                 <tr>
-                    <th>Code</th>
+                    <th style="width: 20%;">Code</th>
                     <th>Komponen</th>
                 </tr>
             </thead>
@@ -104,14 +120,44 @@
         <table class="table table-responsive table-bordered table-striped">
             <thead style="background-color: #a7a7a7;">
                 <tr>
-                    <th>Code</th>
                     <th>Komponen</th>
+                    <th>Sub Komponen</th>
+                    <th>Qty</th>
+                    <th>Uom</th>
+                    <th>Price</th>
+                    <th>Amount</th>
                 </tr>
             </thead>
-            <tbody id="table-komponen"></tbody>
+            <tbody id="table-subKomponen">
+                <tr>
+                    <td>
+                        <select class="form-control" name="komponen[]" id="">
+                            <option value="">Pilih Komponen</option>
+                            @foreach ($komponen as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="name[]">
+                    </td>
+                    <td>
+                        <input type="integer" class="form-control" name="qty[]">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="uom[]">
+                    </td>
+                    <td>
+                        <input type="integer" class="form-control" name="price[]">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="amount[]">
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <div class="m-t-5 m-b-5">
-            <button type="button" id="addKomponen" class="btn btn-info"><i class="icon-plus"></i> Tambah Komponen</button>
+            <button type="button" id="addSubKomponen" class="btn btn-info"><i class="icon-plus"></i> Tambah Komponen</button>
         </div>
     </div>
 </div>
@@ -128,6 +174,10 @@
                         <input type="text" class="form-control" name="name[]">
                     </td>
                 </tr>`;
+        $('#table-komponen').append(elem);
+    })
+    $(document).on('click', '#addKomponen', function () {
+        elem = ``;
         $('#table-komponen').append(elem);
     })
 </script>

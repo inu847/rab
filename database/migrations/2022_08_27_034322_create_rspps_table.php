@@ -15,9 +15,12 @@ class CreateRsppsTable extends Migration
     {
         Schema::create('rspps', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('program');
-            $table->string('kegiatan');
+            $table->string('code_program');
+            $table->string('name_program');
+            $table->string('code_kegiatan');
+            $table->string('name_kegiatan');
+            $table->string('volume_ro');
+            $table->string('jenis_komponen');
             $table->string('kro');
             $table->string('ro');
             $table->unsignedBigInteger('ruh_belanja_id');
