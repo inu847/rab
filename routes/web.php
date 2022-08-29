@@ -28,9 +28,9 @@ Route::resource('general-setting', WebSettingController::class);
 Route::resource('role', RoleController::class);
 Route::resource('user', UserController::class);
 Route::resource('rspp', RSPPController::class);
-Route::post('storeRspp', [RSPPController::class, 'storeRspp'])->name('rspp.storeRspp');
 
 Route::resource('ruhBelanja', RuhBelanjaController::class);
+Route::post('storeRspp/{id}', [RuhBelanjaController::class, 'storeRspp'])->name('rspp.storeRspp');
 Route::get('ruh-belanja/create-rspp/{id}', [RuhBelanjaController::class, 'createRspp'])->name('ruhBelanja.createRspp');
 
 Route::get('login', [AuthController::class, 'todoLogin'])->name('todoLogin');
