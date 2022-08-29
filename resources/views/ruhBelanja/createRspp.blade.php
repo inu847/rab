@@ -32,65 +32,91 @@
     </table>
 </div>
 
-
-<div class='white-box'>
-    <div class='row'>
-        <div class='col-sm-12'>
-            <h4 class='box-title'>Add RSPP</h4>
-        </div>
-        <form class="form-horizontal" action='{{ route('rspp.store') }}' method='POST' enctype='multipart/form-data'>
-            @csrf
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-md-2">
-                        <input type="number" class="form-control" placeholder="Kegiatan">
-                    </div>
-                    <div class="col-md-2">
-                        <input type="number" class="form-control" placeholder="KRO">
-                    </div>
-                    <div class="col-md-2">
-                        <input type="number" class="form-control" placeholder="RO">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="number" class="form-control" placeholder="Komponen">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Judul Kegiatan">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Akun">
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
-                </div>
-            </div>
-
-            <button type='submit' class='btn btn-primary col-md-12'>Submit</button>
-        </form>
+@if ($data->rspp)
+    <div class="white-box">
+        <table class="table table-responsive">
+            <tr>
+                <th>Kode</th>
+                <th>Uraian RO/ Komponen/ Subkomponen</th>
+            </tr>
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $data->rspp->code_kegiatan.".".$data->rspp->kro.".".$data->rspp->ro }}</td>
+                    <td>{{ $data->rspp->kegiatan }}</td>
+                </tr>
+                <tr>
+                    <td>{{ $data->rspp->code_komponen }}</td>
+                    <td>{{ $data->rspp->komponen }}</td>
+                </tr>
+                <tr>
+                    <td>{{ $data->rspp->code_judul_kegiatan }}</td>
+                    <td>{{ $data->rspp->judul_kegiatan }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
+@else
+    <div class='white-box'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <h4 class='box-title'>Add RSPP</h4>
+            </div>
+            <form class="form-horizontal" action='{{ route('rspp.storeRspp', [$data->id]) }}' method='POST' enctype='multipart/form-data'>
+                @csrf
+                <div class="form-group col-md-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="number" class="form-control" name="code_kegiatan" placeholder="Code Kegiatan">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" name="kro" placeholder="KRO">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" class="form-control" name="ro" placeholder="RO">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="kegiatan" placeholder="Kegiatan">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" name="code_komponen" placeholder="Code Komponen">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="komponen" placeholder="Judul Komponen">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="code_judul_kegiatan" placeholder="Code Judul Kegiatan">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="judul_kegiatan" placeholder="Judul Kegiatan">
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="form-group col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Akun">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </div> --}}
+
+                <button type='submit' class='btn btn-primary col-md-12'>Submit</button>
+            </form>
+        </div>
+    </div>
+@endif
 
 <div class="white-box">
     <div class='row'>

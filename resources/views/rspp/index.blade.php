@@ -25,11 +25,12 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Code</th>
-                    <th>Program</th>
+                    <th>Kode Kegiatan</th>
                     <th>Kegiatan</th>
-                    <th>Kro</th>
-                    <th>Ro</th>
+                    <th>Kode Komponen</th>
+                    <th>Komponen</th>
+                    <th>Kode Judul Kegiatan</th>
+                    <th>Judul Kegiatan</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -37,11 +38,12 @@
                 @foreach ($data as $key => $item)
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{ $item->code }}</td>
-                        <td>{{ $item->program }}</td>
+                        <td>{{ $item->code_kegiatan.".".$item->kro.".".$item->ro }}</td>
                         <td>{{ $item->kegiatan }}</td>
-                        <td>{{ $item->kro }}</td>
-                        <td>{{ $item->ro }}</td>
+                        <td>{{ $item->code_komponen }}</td>
+                        <td>{{ $item->komponen }}</td>
+                        <td>{{ $item->code_judul_kegiatan }}</td>
+                        <td>{{ $item->judul_kegiatan }}</td>
                         <td>
                             <a href="{{ route('rspp.edit', [$item->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
                             <button onclick="$('#delete').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Komponen;
+use App\Models\Rspp;
 use App\Models\RuhBelanja;
 use Illuminate\Http\Request;
 
@@ -116,5 +117,18 @@ class RuhBelanjaController extends Controller
         $komponen = Komponen::where('rspp_id', $data->id)->get();
         
         return view('ruhBelanja.createRspp', ['data' => $data, 'komponen' => $komponen]);
+    }
+
+    public function storeRspp(Request $request, $id)
+    {
+        try {
+            $data = $request->all();
+            $data['ruh_belanja_id'] = $id;
+            $rspp = Rspp::create($data);
+
+            return redirect()->back()->with('success', 'Berhasil Input RSPP');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('danger', $th);
+        }
     }
 }
