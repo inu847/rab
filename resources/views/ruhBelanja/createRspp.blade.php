@@ -266,8 +266,8 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->qty }}</td>
                                 <td>{{ $item->uom }}</td>
-                                <td>{{ $item->price }}</td>
-                                <td>{{ $item->amount }}</td>
+                                <td>{{ number_format($item->price) }}</td>
+                                <td>{{ number_format($item->amount) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
