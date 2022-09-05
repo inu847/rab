@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Auth;
 
     function getSubKomponen($id)
     {
-        $subKomponen = SubKomponen::where('rspp_id', $id)->get();
+        $subKomponen = SubKomponen::where('rspp_id', $id)->get() ?? '';
         
         return $subKomponen;
     }
