@@ -242,37 +242,39 @@
 
 
     {{-- SUB KOMPONEN --}}
-    <div class="white-box">
-        <div class='row'>
-            <div class='col-sm-6'>
-                <h4 class='box-title'>Sub Komponen</h4>
-            </div>
-            <table class="table table-responsive table-bordered table-striped">
-                <thead style="background-color: #a7a7a7;">
-                    <tr>
-                        <th>Komponen</th>
-                        <th>Sub Komponen</th>
-                        <th>Qty</th>
-                        <th>Uom</th>
-                        <th>Price</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (getSubKomponen($data->rspp->id) as $item)    
+    @if (getSubKomponen($data->rspp->id) != false)
+        <div class="white-box">
+            <div class='row'>
+                <div class='col-sm-6'>
+                    <h4 class='box-title'>Sub Komponen</h4>
+                </div>
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead style="background-color: #a7a7a7;">
                         <tr>
-                            <td>{{ $item->komponen->code }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->qty }}</td>
-                            <td>{{ $item->uom }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->amount }}</td>
+                            <th>Komponen</th>
+                            <th>Sub Komponen</th>
+                            <th>Qty</th>
+                            <th>Uom</th>
+                            <th>Price</th>
+                            <th>Amount</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (getSubKomponen($data->rspp->id) as $item)    
+                            <tr>
+                                <td>{{ $item->komponen->code }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->qty }}</td>
+                                <td>{{ $item->uom }}</td>
+                                <td>{{ $item->price }}</td>
+                                <td>{{ $item->amount }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="white-box">
         <div class='row'>
