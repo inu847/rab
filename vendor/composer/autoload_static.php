@@ -523,6 +523,8 @@ class ComposerStaticInit1384b0abade4b618d5ce9433d7195ae1
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\GeneralSetting' => __DIR__ . '/../..' . '/app/Models/GeneralSetting.php',
         'App\\Models\\Komponen' => __DIR__ . '/../..' . '/app/Models/Komponen.php',
+        'App\\Models\\Kro' => __DIR__ . '/../..' . '/app/Models/Kro.php',
+        'App\\Models\\Ro' => __DIR__ . '/../..' . '/app/Models/Ro.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\Rspp' => __DIR__ . '/../..' . '/app/Models/Rspp.php',
         'App\\Models\\RuhBelanja' => __DIR__ . '/../..' . '/app/Models/RuhBelanja.php',

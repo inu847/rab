@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKomponensTable extends Migration
+class CreateRosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateKomponensTable extends Migration
      */
     public function up()
     {
-        Schema::create('komponens', function (Blueprint $table) {
+        Schema::create('ros', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('name');
-            $table->unsignedBigInteger('ro_id');
-            $table->foreign('ro_id')->references('id')->on('ros')->onDelete('cascade');
+            $table->string('code_ro');
+            $table->string('ro');
+            $table->unsignedBigInteger('kro_id');
+            $table->foreign('kro_id')->references('id')->on('kros')->onDelete('cascade');
             $table->unsignedBigInteger('rspp_id');
             $table->foreign('rspp_id')->references('id')->on('rspps')->onDelete('cascade');
             $table->timestamps();
@@ -32,6 +32,6 @@ class CreateKomponensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('komponens');
+        Schema::dropIfExists('ros');
     }
 }

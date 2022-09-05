@@ -27,6 +27,8 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\GeneralSetting' => $baseDir . '/app/Models/GeneralSetting.php',
     'App\\Models\\Komponen' => $baseDir . '/app/Models/Komponen.php',
+    'App\\Models\\Kro' => $baseDir . '/app/Models/Kro.php',
+    'App\\Models\\Ro' => $baseDir . '/app/Models/Ro.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
     'App\\Models\\Rspp' => $baseDir . '/app/Models/Rspp.php',
     'App\\Models\\RuhBelanja' => $baseDir . '/app/Models/RuhBelanja.php',

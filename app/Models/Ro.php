@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Komponen extends Model
+class Ro extends Model
 {
     use HasFactory;
-    protected $fillable = ['code', 'name', 'rspp_id', 'ro_id'];
+    protected $fillable = ['code_ro', 'ro', 'kro_id', 'rspp_id'];
 
-    public function ro()
+    public function kro()
     {
-        return $this->belongsTo(Ro::class, 'ro_id', 'id');
+        return $this->belongsTo(Kro::class, 'kro_id', 'id');
     }
 
     public function rspp()

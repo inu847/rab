@@ -31,6 +31,10 @@ Route::resource('rspp', RSPPController::class);
 
 Route::resource('ruhBelanja', RuhBelanjaController::class);
 Route::post('storeRspp/{id}', [RuhBelanjaController::class, 'storeRspp'])->name('rspp.storeRspp');
+Route::post('storeKro', [RuhBelanjaController::class, 'storeKro'])->name('rspp.storeKro');
+Route::post('storeRo', [RuhBelanjaController::class, 'storeRo'])->name('rspp.storeRo');
+Route::post('storekomponen', [RuhBelanjaController::class, 'storekomponen'])->name('rspp.storekomponen');
+Route::post('storeSubKomponen', [RuhBelanjaController::class, 'storeSubKomponen'])->name('rspp.storeSubKomponen');
 Route::get('ruh-belanja/create-rspp/{id}', [RuhBelanjaController::class, 'createRspp'])->name('ruhBelanja.createRspp');
 
 Route::get('login', [AuthController::class, 'todoLogin'])->name('todoLogin');

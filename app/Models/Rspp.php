@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rspp extends Model
 {
     use HasFactory;
-    protected $fillable = ['code_kegiatan', 'kro', 'ro', 'kegiatan', 'code_komponen', 'komponen', 'code_judul_kegiatan', 'judul_kegiatan', 'volume', 'jenis_komponen', 'ruh_belanja_id'];
+    protected $fillable = ['code_program', 'program', 'code_kegiatan', 'kegiatan', 'ruh_belanja_id'];
 
     public function ruhBelanja()
     {
