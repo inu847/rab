@@ -303,92 +303,93 @@
     </div>
 @endif
 @endsection
+@if ($data->rspp)
+    <script src="{{ asset('assets/plugins/components/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+        $(document).on('click', '#addKro', function () {
+            elem = `<tr>
+                        <td>
+                            <select name="rspp_id[]" class="form-control" id="">
+                                @foreach ($rspp as $item)
+                                    <option value="{{ $item->id }}">{{ $item->code_kegiatan."-".$item->kegiatan }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="code_kro[]" placeholder="Code KRO">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="kro[]" placeholder="KRO">
+                        </td>
+                    </tr>`;
+            $('#table-kro').append(elem);
+        })
 
-<script src="{{ asset('assets/plugins/components/jquery/dist/jquery.min.js') }}"></script>
-<script>
-    $(document).on('click', '#addKro', function () {
-        elem = `<tr>
-                    <td>
-                        <select name="rspp_id[]" class="form-control" id="">
-                            @foreach ($rspp as $item)
-                                <option value="{{ $item->id }}">{{ $item->code_kegiatan."-".$item->kegiatan }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="code_kro[]" placeholder="Code KRO">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="kro[]" placeholder="KRO">
-                    </td>
-                </tr>`;
-        $('#table-kro').append(elem);
-    })
+        $(document).on('click', '#addRo', function () {
+            elem = `<tr>
+                        <td>
+                            <select name="kro_id[]" class="form-control" id="">
+                                @foreach ($kro as $item)
+                                    <option value="{{ $item->id }}">{{ $item->rspp->code_kegiatan.".".$item->code_kro }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="code_ro[]" placeholder="Code KRO">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="ro[]" placeholder="KRO">
+                        </td>
+                    </tr>`;
+            $('#table-ro').append(elem);
+        })
 
-    $(document).on('click', '#addRo', function () {
-        elem = `<tr>
-                    <td>
-                        <select name="kro_id[]" class="form-control" id="">
-                            @foreach ($kro as $item)
-                                <option value="{{ $item->id }}">{{ $item->rspp->code_kegiatan.".".$item->code_kro }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="code_ro[]" placeholder="Code KRO">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="ro[]" placeholder="KRO">
-                    </td>
-                </tr>`;
-        $('#table-ro').append(elem);
-    })
+        $(document).on('click', '#addKomponen', function () {
+            elem = `<tr>
+                        <td>
+                            <select name="ro_id[]" class="form-control" id="">
+                                @foreach (getRo($data->rspp->id) as $item)
+                                    <option value="{{ $item->id }}">{{ $item->full_code }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="code[]" placeholder="Code Komponen">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="name[]" placeholder="Komponen">
+                        </td>
+                    </tr>`;
+            $('#table-komponen').append(elem);
+        })
 
-    $(document).on('click', '#addKomponen', function () {
-        elem = `<tr>
-                    <td>
-                        <select name="ro_id[]" class="form-control" id="">
-                            @foreach (getRo($data->rspp->id) as $item)
-                                <option value="{{ $item->id }}">{{ $item->full_code }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="code[]" placeholder="Code Komponen">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="name[]" placeholder="Komponen">
-                    </td>
-                </tr>`;
-        $('#table-komponen').append(elem);
-    })
-
-    $(document).on('click', '#addSubKomponen', function () {
-        elem = `<tr>
-                    <td>
-                        <select class="form-control" name="komponen_id[]" id="">
-                            <option value="">Pilih Komponen</option>
-                            @foreach (getKomponen($data->rspp->id) as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="name[]">
-                    </td>
-                    <td>
-                        <input type="integer" class="form-control" name="qty[]">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="uom[]">
-                    </td>
-                    <td>
-                        <input type="integer" class="form-control" name="price[]">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="amount[]">
-                    </td>
-                </tr>`;
-        $('#table-sub-komponen').append(elem);
-    })
-</script>
+        $(document).on('click', '#addSubKomponen', function () {
+            elem = `<tr>
+                        <td>
+                            <select class="form-control" name="komponen_id[]" id="">
+                                <option value="">Pilih Komponen</option>
+                                @foreach (getKomponen($data->rspp->id) as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="name[]">
+                        </td>
+                        <td>
+                            <input type="integer" class="form-control" name="qty[]">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="uom[]">
+                        </td>
+                        <td>
+                            <input type="integer" class="form-control" name="price[]">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="amount[]">
+                        </td>
+                    </tr>`;
+            $('#table-sub-komponen').append(elem);
+        })
+    </script>
+@endif
