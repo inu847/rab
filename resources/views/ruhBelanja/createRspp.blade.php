@@ -139,149 +139,114 @@
             </form>
         </div>
     </div>
-@endif
 
-{{-- RO --}}
-<div class="white-box">
-    <div class='row'>
-        <div class='col-sm-6'>
-            <h4 class='box-title'>RO</h4>
-        </div>
-        <table class="table table-responsive table-bordered table-striped">
-            <thead style="background-color: #a7a7a7;">
-                <tr>
-                    <th>Kode RO</th>
-                    <th>RO</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (getRo($data->rspp->id) as $item)
-                    <tr>
-                        <td>{{ $item->full_code }}</td>
-                        <td>{{ $item->ro }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="white-box">
-    <div class='row'>
-        <div class='col-sm-6'>
-            <h4 class='box-title'>Add RO</h4>
-        </div>
-        <form action='{{ route('rspp.storeRo') }}' method='POST' enctype='multipart/form-data'>
-            @csrf
+    {{-- RO --}}
+    <div class="white-box">
+        <div class='row'>
+            <div class='col-sm-6'>
+                <h4 class='box-title'>RO</h4>
+            </div>
             <table class="table table-responsive table-bordered table-striped">
                 <thead style="background-color: #a7a7a7;">
                     <tr>
-                        <th style="width: 20%;">KRO</th>
-                        <th style="width: 20%;">Kode RO</th>
+                        <th>Kode RO</th>
                         <th>RO</th>
                     </tr>
                 </thead>
-                <tbody id="table-ro"></tbody>
+                <tbody>
+                    @foreach (getRo($data->rspp->id) as $item)
+                        <tr>
+                            <td>{{ $item->full_code }}</td>
+                            <td>{{ $item->ro }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
-            <div class="m-t-5 m-b-5">
-                <button type='submit' class='btn btn-primary'>Submit</button>
-                <button type="button" id="addRo" class="btn btn-info"><i class="icon-plus"></i> Tambah RO</button>
+        </div>
+    </div>
+
+    <div class="white-box">
+        <div class='row'>
+            <div class='col-sm-6'>
+                <h4 class='box-title'>Add RO</h4>
             </div>
-        </form>
-    </div>
-</div>
-
-{{-- KOMPONEN --}}
-<div class="white-box">
-    <div class='row'>
-        <div class='col-sm-6'>
-            <h4 class='box-title'>Komponen</h4>
+            <form action='{{ route('rspp.storeRo') }}' method='POST' enctype='multipart/form-data'>
+                @csrf
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead style="background-color: #a7a7a7;">
+                        <tr>
+                            <th style="width: 20%;">KRO</th>
+                            <th style="width: 20%;">Kode RO</th>
+                            <th>RO</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-ro"></tbody>
+                </table>
+                <div class="m-t-5 m-b-5">
+                    <button type='submit' class='btn btn-primary'>Submit</button>
+                    <button type="button" id="addRo" class="btn btn-info"><i class="icon-plus"></i> Tambah RO</button>
+                </div>
+            </form>
         </div>
-        <table class="table table-responsive table-bordered table-striped">
-            <thead style="background-color: #a7a7a7;">
-                <tr>
-                    <th>Kode Komponen</th>
-                    <th>Komponen</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (getKomponen($data->rspp->id) as $item)
-                    <tr>
-                        <td>{{ $item->code }}</td>
-                        <td>{{ $item->name }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
-</div>
 
-<div class="white-box">
-    <div class='row'>
-        <div class='col-sm-6'>
-            <h4 class='box-title'>Add Komponen</h4>
-        </div>
-        <form action='{{ route('rspp.storekomponen') }}' method='POST' enctype='multipart/form-data'>
-            @csrf
+    {{-- KOMPONEN --}}
+    <div class="white-box">
+        <div class='row'>
+            <div class='col-sm-6'>
+                <h4 class='box-title'>Komponen</h4>
+            </div>
             <table class="table table-responsive table-bordered table-striped">
                 <thead style="background-color: #a7a7a7;">
                     <tr>
-                        <th style="width: 20%;">Kode RO</th>
-                        <th style="width: 20%;">Kode Komponen</th>
+                        <th>Kode Komponen</th>
                         <th>Komponen</th>
                     </tr>
                 </thead>
-                <tbody id="table-komponen"></tbody>
+                <tbody>
+                    @foreach (getKomponen($data->rspp->id) as $item)
+                        <tr>
+                            <td>{{ $item->code }}</td>
+                            <td>{{ $item->name }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
-            <div class="m-t-5 m-b-5">
-                <button type='submit' class='btn btn-primary'>Submit</button>
-                <button type="button" id="addKomponen" class="btn btn-info"><i class="icon-plus"></i> Tambah Komponen</button>
+        </div>
+    </div>
+
+    <div class="white-box">
+        <div class='row'>
+            <div class='col-sm-6'>
+                <h4 class='box-title'>Add Komponen</h4>
             </div>
-        </form>
-    </div>
-</div>
-
-
-{{-- SUB KOMPONEN --}}
-<div class="white-box">
-    <div class='row'>
-        <div class='col-sm-6'>
-            <h4 class='box-title'>Sub Komponen</h4>
+            <form action='{{ route('rspp.storekomponen') }}' method='POST' enctype='multipart/form-data'>
+                @csrf
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead style="background-color: #a7a7a7;">
+                        <tr>
+                            <th style="width: 20%;">Kode RO</th>
+                            <th style="width: 20%;">Kode Komponen</th>
+                            <th>Komponen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-komponen"></tbody>
+                </table>
+                <div class="m-t-5 m-b-5">
+                    <button type='submit' class='btn btn-primary'>Submit</button>
+                    <button type="button" id="addKomponen" class="btn btn-info"><i class="icon-plus"></i> Tambah Komponen</button>
+                </div>
+            </form>
         </div>
-        <table class="table table-responsive table-bordered table-striped">
-            <thead style="background-color: #a7a7a7;">
-                <tr>
-                    <th>Komponen</th>
-                    <th>Sub Komponen</th>
-                    <th>Qty</th>
-                    <th>Uom</th>
-                    <th>Price</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (getSubKomponen($data->rspp->id) as $item)    
-                    <tr>
-                        <td>{{ $item->komponen->code }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->qty }}</td>
-                        <td>{{ $item->uom }}</td>
-                        <td>{{ $item->price }}</td>
-                        <td>{{ $item->amount }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
-</div>
 
-<div class="white-box">
-    <div class='row'>
-        <div class='col-sm-6'>
-            <h4 class='box-title'>Add Sub Komponen</h4>
-        </div>
-        <form action='{{ route('rspp.storeSubKomponen') }}' method='POST' enctype='multipart/form-data'>
-            @csrf
+
+    {{-- SUB KOMPONEN --}}
+    <div class="white-box">
+        <div class='row'>
+            <div class='col-sm-6'>
+                <h4 class='box-title'>Sub Komponen</h4>
+            </div>
             <table class="table table-responsive table-bordered table-striped">
                 <thead style="background-color: #a7a7a7;">
                     <tr>
@@ -293,16 +258,50 @@
                         <th>Amount</th>
                     </tr>
                 </thead>
-                <tbody id="table-sub-komponen"></tbody>
+                <tbody>
+                    @foreach (getSubKomponen($data->rspp->id) as $item)    
+                        <tr>
+                            <td>{{ $item->komponen->code }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->qty }}</td>
+                            <td>{{ $item->uom }}</td>
+                            <td>{{ $item->price }}</td>
+                            <td>{{ $item->amount }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
-            <div class="m-t-5 m-b-5">
-                <button type='submit' class='btn btn-primary'>Submit</button>
-                <button type="button" id="addSubKomponen" class="btn btn-info"><i class="icon-plus"></i> Tambah Komponen</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
+    <div class="white-box">
+        <div class='row'>
+            <div class='col-sm-6'>
+                <h4 class='box-title'>Add Sub Komponen</h4>
+            </div>
+            <form action='{{ route('rspp.storeSubKomponen') }}' method='POST' enctype='multipart/form-data'>
+                @csrf
+                <table class="table table-responsive table-bordered table-striped">
+                    <thead style="background-color: #a7a7a7;">
+                        <tr>
+                            <th>Komponen</th>
+                            <th>Sub Komponen</th>
+                            <th>Qty</th>
+                            <th>Uom</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-sub-komponen"></tbody>
+                </table>
+                <div class="m-t-5 m-b-5">
+                    <button type='submit' class='btn btn-primary'>Submit</button>
+                    <button type="button" id="addSubKomponen" class="btn btn-info"><i class="icon-plus"></i> Tambah Komponen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endif
 @endsection
 
 <script src="{{ asset('assets/plugins/components/jquery/dist/jquery.min.js') }}"></script>
