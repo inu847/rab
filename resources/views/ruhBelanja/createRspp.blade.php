@@ -242,7 +242,7 @@
 
 
     {{-- SUB KOMPONEN --}}
-    @if (getSubKomponen($data->rspp->id) != false)
+    {{-- @if (getSubKomponen($data->rspp->id) != false)
         <div class="white-box">
             <div class='row'>
                 <div class='col-sm-6'>
@@ -302,7 +302,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> --}}
 @endif
 @endsection
 @if ($data->rspp)
