@@ -524,6 +524,7 @@ class ComposerStaticInit1384b0abade4b618d5ce9433d7195ae1
         'App\\Models\\GeneralSetting' => __DIR__ . '/../..' . '/app/Models/GeneralSetting.php',
         'App\\Models\\Komponen' => __DIR__ . '/../..' . '/app/Models/Komponen.php',
         'App\\Models\\Kro' => __DIR__ . '/../..' . '/app/Models/Kro.php',
+        'App\\Models\\ManageAccess' => __DIR__ . '/../..' . '/app/Models/ManageAccess.php',
         'App\\Models\\Ro' => __DIR__ . '/../..' . '/app/Models/Ro.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\Rspp' => __DIR__ . '/../..' . '/app/Models/Rspp.php',

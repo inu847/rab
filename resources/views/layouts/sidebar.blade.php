@@ -26,13 +26,15 @@
                 <li>
                     <a class="active waves-effect" href="{{ route('dashboard') }}" aria-expanded="false"><i class="icon-screen-desktop fa-fw"></i> <span class="hide-menu"> Dashboard</span></a>
                 </li>
-                <li>
-                    <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-user fa-fw"></i> <span class="hide-menu"> Manage User <span class="label label-rounded label-info pull-right">2</span></span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li> <a href="{{ route('user.index') }}">User</a> </li>
-                        <li> <a href="{{ route('role.index') }}">Role</a> </li>
-                    </ul>
-                </li>
+                @if (Auth::guard('user')->user()->role->id == 1)
+                    <li>
+                        <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-user fa-fw"></i> <span class="hide-menu"> Manage User <span class="label label-rounded label-info pull-right">2</span></span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li> <a href="{{ route('user.index') }}">User</a> </li>
+                            <li> <a href="{{ route('role.index') }}">Role</a> </li>
+                        </ul>
+                    </li>
+                @endif
                 {{-- <li>
                     <a class="waves-effect" href="{{ route('rspp.index') }}" aria-expanded="false"><i class="icon-basket fa-fw"></i> <span class="hide-menu"> Data RSPP </span></a>
                 </li> --}}
@@ -63,19 +65,27 @@
                         <li><a href="{{ route('report.yearly') }}">Yearly Report</a></li>
                     </ul>
                 </li> --}}
-                <li>
-                    @if (Auth::guard('user')->user()->generalSetting)
-                        <a href="{{ route('general-setting.edit', [Auth::guard('user')->user()->generalSetting->id]) }}" aria-expanded="false"><i class="icon-settings fa-fw"></i> <span class="hide-menu"> Web Setting </span></a>
-                    @else
-                        <a href="{{ route('general-setting.create') }}" aria-expanded="false"><i class="icon-settings fa-fw"></i> <span class="hide-menu"> Web Setting </span></a>
-                    @endif
-                </li>
-                <li>
-                    <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-location-pin fa-fw"></i> <span class="hide-menu"> Maps</span></a>
-                </li>
-                <li>
-                    <a href="calendar.html" aria-expanded="false"><i class="icon-calender fa-fw"></i> <span class="hide-menu"> Calendar</span></a>
-                </li>
+                @if (Auth::guard('user')->user()->role->id == 1)
+                    <li>
+                        <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-settings fa-fw"></i>  <span class="hide-menu"> Setting <span class="label label-rounded label-info pull-right">3</span></span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li>
+                                @if (Auth::guard('user')->user()->generalSetting)
+                                    <a href="{{ route('general-setting.edit', [Auth::guard('user')->user()->generalSetting->id]) }}"> Web Setting </span></a>
+                                @else
+                                    <a href="{{ route('general-setting.create') }}">Web Setting </span></a>
+                                @endif
+                            </li>
+                            <li><a href="{{ route('manage-access.index') }}">Manage Access</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" onclick="$('#logout').submit();" aria-expanded="false"><i class="icon-power fa-fw"></i> <span class="hide-menu"> Logout</span></a>
+                        <form action='{{ route('logout') }}' id="logout" method='POST' enctype='multipart/form-data'>
+                        @csrf
+                        </form>
+                    </li>
+                @endif
             </ul>
         </nav>
         {{-- <div class="p-30">

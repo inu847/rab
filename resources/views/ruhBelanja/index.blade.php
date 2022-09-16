@@ -7,10 +7,10 @@
 @section('content')
     <div class='white-box'>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-10">
                 <h4 class="box-title">List Ruh Belanja</h4>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-2">
                 <ul class="list-inline">
                     <li>
                         {{-- <button type="button" data-toggle="modal" data-target="#responsive-modal" class="btn btn-primary font-16"><i class="icon-plus"></i> Import Ruh Belanja</button> --}}
@@ -30,7 +30,9 @@
                     <th>K/L Unit</th>
                     <th>Tahun Anggaran</th>
                     <th>Tools</th>
-                    <th>Action</th>
+                    @if (can('ruh'))
+                        <th>Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -43,14 +45,16 @@
                         <td>
                             <a href="{{ route('ruhBelanja.createRspp', [$item->id]) }}" class="btn btn-warning">Rekam Kegiatan</a>
                         </td>
-                        <td>
-                            <button type="button" onclick="edit({{$item->id}});" class="btn btn-info"><i class="fa fa-pencil"></i></button>
-                            <button onclick="$('#delete').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                            <form id="delete" action="{{ route('ruhBelanja.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
-                                @csrf
-                                @method("DELETE")
-                            </form>
-                        </td>
+                        @if (can('ruh'))
+                            <td>
+                                <button type="button" onclick="edit({{$item->id}});" class="btn btn-info"><i class="fa fa-pencil"></i></button>
+                                <button onclick="$('#delete').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <form id="delete" action="{{ route('ruhBelanja.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                </form>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

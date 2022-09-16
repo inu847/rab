@@ -3,7 +3,8 @@
 use App\Models\InventoryStock;
 use App\Models\Komponen;
 use App\Models\Kro;
-use App\Models\Models\GeneralSetting;
+use App\Models\ManageAccess;
+use App\Models\GeneralSetting;
 use App\Models\Models\MasterProduct;
 use App\Models\Models\MasterVarian;
 use App\Models\Models\Product;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
     function generalSetting()
     {
-        $generalStetting = Auth::guard('user')->user()->generalSetting;
+        $generalStetting = GeneralSetting::first();
         
         return $generalStetting;
     }
@@ -54,6 +55,21 @@ use Illuminate\Support\Facades\Auth;
             return $subKomponen;
         } catch (\Throwable $th) {
             return false;
+        }
+    }
+
+    function can($slug)
+    {
+        $hasAccess = ManageAccess::where('role_id', Auth::guard('user')->user()->role->id)->where('slug', $slug)->first() ?? null;
+
+        if ($hasAccess) {
+            if ($hasAccess->status == 1) {
+                return $hasAccess;
+            }else {
+                return null;
+            }
+        }else {
+            return null;
         }
     }
 ?>

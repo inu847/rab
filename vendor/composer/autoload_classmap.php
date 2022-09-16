@@ -28,6 +28,7 @@ return array(
     'App\\Models\\GeneralSetting' => $baseDir . '/app/Models/GeneralSetting.php',
     'App\\Models\\Komponen' => $baseDir . '/app/Models/Komponen.php',
     'App\\Models\\Kro' => $baseDir . '/app/Models/Kro.php',
+    'App\\Models\\ManageAccess' => $baseDir . '/app/Models/ManageAccess.php',
     'App\\Models\\Ro' => $baseDir . '/app/Models/Ro.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
     'App\\Models\\Rspp' => $baseDir . '/app/Models/Rspp.php',

@@ -30,4 +30,11 @@ class AuthController extends Controller
             return  redirect()->back()->with('danger', 'Username Password  salah!');
         }
     }
+
+    public function logout()
+    {
+        Auth::guard('user')->logout();
+
+        return redirect()->route('todoLogin');
+    }
 }

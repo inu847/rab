@@ -117,12 +117,13 @@ class RuhBelanjaController extends Controller
     public function createRspp($id)
     {
         $data = RuhBelanja::findOrFail($id);
+        $rspp = Rspp::where('ruh_belanja_id', $id)->get();
         $komponen = Komponen::where('rspp_id', $data->id)->get();
         $rspp = Rspp::get();
         $kro = Kro::get();
         $ro = Ro::get();
         
-        return view('ruhBelanja.createRspp', ['data' => $data, 'komponen' => $komponen, 'rspp' => $rspp, 'kro' => $kro, 'ro' => $ro]);
+        return view('ruhBelanja.createRspp', ['data' => $data, 'rspp' => $rspp, 'komponen' => $komponen, 'rspp' => $rspp, 'kro' => $kro, 'ro' => $ro]);
     }
 
     public function storeRspp(Request $request, $id)
