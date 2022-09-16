@@ -79,13 +79,13 @@
                             <li><a href="{{ route('manage-access.index') }}">Manage Access</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" onclick="$('#logout').submit();" aria-expanded="false"><i class="icon-power fa-fw"></i> <span class="hide-menu"> Logout</span></a>
-                        <form action='{{ route('logout') }}' id="logout" method='POST' enctype='multipart/form-data'>
-                        @csrf
-                        </form>
-                    </li>
                 @endif
+                <li>
+                    <a href="javascript:void(0);" onclick="$('#logout').submit();" aria-expanded="false"><i class="icon-power fa-fw"></i> <span class="hide-menu"> Logout</span></a>
+                    <form action='{{ route('logout') }}' id="logout" method='POST' enctype='multipart/form-data'>
+                    @csrf
+                    </form>
+                </li>
             </ul>
         </nav>
         {{-- <div class="p-30">
