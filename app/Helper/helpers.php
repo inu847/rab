@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Akun;
+use App\Models\AkunRuhBelanja;
 use App\Models\InventoryStock;
 use App\Models\Komponen;
 use App\Models\Kro;
@@ -71,5 +73,12 @@ use Illuminate\Support\Facades\Auth;
         }else {
             return null;
         }
+    }
+
+    function akun($id)
+    {
+        $akun = AkunRuhBelanja::where('ruh_belanja_id', $id)->get();
+        
+        return $akun;
     }
 ?>

@@ -5,6 +5,7 @@
 </div>
 <form action="{{ route('ruhBelanja.update', [$data->id]) }}" method="POST" enctype="multipart/form-data">
     @csrf
+    @method("PUT")
 <div class="modal-body">
         <div class="form-group">
             <label for="th_anggaran" class="control-label">Tahun Anggaran</label>

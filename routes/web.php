@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\AkunRuhBelanjaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManageAccessController;
@@ -31,6 +33,9 @@ Route::resource('user', UserController::class);
 Route::resource('rspp', RSPPController::class);
 
 Route::resource('ruhBelanja', RuhBelanjaController::class);
+Route::get('ruh-belanja/insertAkun/{id}', [RuhBelanjaController::class, 'insertAkun'])->name('ruhBelanja.insertAkun');
+Route::resource('akun-ruh-belanja', AkunRuhBelanjaController::class);
+Route::resource('akun', AkunController::class);
 Route::resource('manage-access', ManageAccessController::class);
 Route::post('storeRspp/{id}', [RuhBelanjaController::class, 'storeRspp'])->name('rspp.storeRspp');
 Route::post('storeKro', [RuhBelanjaController::class, 'storeKro'])->name('rspp.storeKro');

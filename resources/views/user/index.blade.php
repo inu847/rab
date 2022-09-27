@@ -37,8 +37,8 @@
                         <td>{{ $item->role->name }}</td>
                         <td>
                             <a href="{{ route('user.edit', [$item->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
-                            <button onclick="$('#delete').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</button>
-                            <form id="delete" action="{{ route('user.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
+                            <button onclick="$('#delete{{ $key }}').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</button>
+                            <form id="delete{{ $key }}" action="{{ route('user.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
                                 @csrf
                                 @method("DELETE")
                             </form>

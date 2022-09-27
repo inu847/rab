@@ -43,13 +43,14 @@
                         <td>{{ $item->code_kl_unit.' - '.$item->name_kl_unit }}</td>
                         <td>{{ $item->th_anggaran }}</td>
                         <td>
-                            <a href="{{ route('ruhBelanja.createRspp', [$item->id]) }}" class="btn btn-warning">Rekam Kegiatan</a>
+                            <a href="{{ route('ruhBelanja.createRspp', [$item->id]) }}" class="btn btn-warning m-3">Rekam Kegiatan</a>
+                            <a href="{{ route('ruhBelanja.insertAkun', [$item->id]) }}" class="btn btn-primary m-3">Tambah Akun</a>
                         </td>
                         @if (can('ruh'))
                             <td>
                                 <button type="button" onclick="edit({{$item->id}});" class="btn btn-info"><i class="fa fa-pencil"></i></button>
-                                <button onclick="$('#delete').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                <form id="delete" action="{{ route('ruhBelanja.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
+                                <button onclick="$('#delete{{ $key }}').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <form id="delete{{ $key }}" action="{{ route('ruhBelanja.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     @method("DELETE")
                                 </form>
@@ -92,7 +93,7 @@
 
     function edit(id) {
         $.ajax({
-            url: "/ruhBelanja/edit/"+id, 
+            url: "/ruhBelanja/"+id+"/edit", 
             type: 'GET', 
             dataType  : 'json',
         })

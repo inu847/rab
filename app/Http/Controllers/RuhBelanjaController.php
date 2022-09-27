@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Akun;
 use App\Models\Komponen;
 use App\Models\Kro;
 use App\Models\Ro;
@@ -72,7 +73,6 @@ class RuhBelanjaController extends Controller
      */
     public function edit($id)
     {
-        dd('asd');
         $data = RuhBelanja::findOrFail($id);
 
         return view('ruhBelanja.edit', ['data' => $data]);
@@ -214,5 +214,13 @@ class RuhBelanjaController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
         }
+    }
+
+    public function insertAkun($id)
+    {
+        $data = RuhBelanja::findOrFail($id);
+        $akun = Akun::get();
+
+        return view('ruhBelanja.createAkun', ['data' => $data, 'akun' => $akun]);
     }
 }

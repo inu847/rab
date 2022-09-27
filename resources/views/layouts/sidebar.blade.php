@@ -35,9 +35,9 @@
                         </ul>
                     </li>
                 @endif
-                {{-- <li>
-                    <a class="waves-effect" href="{{ route('rspp.index') }}" aria-expanded="false"><i class="icon-basket fa-fw"></i> <span class="hide-menu"> Data RSPP </span></a>
-                </li> --}}
+                <li>
+                    <a class="waves-effect" href="{{ route('akun.index') }}" aria-expanded="false"><i class="icon-basket fa-fw"></i> <span class="hide-menu"> Akun </span></a>
+                </li>
                 <li>
                     <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-basket fa-fw"></i> <span class="hide-menu"> RAB <span class="label label-rounded label-info pull-right">2</span></span></a>
                     <ul aria-expanded="false" class="collapse">
