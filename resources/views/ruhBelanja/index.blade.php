@@ -48,7 +48,8 @@
                         </td>
                         @if (can('ruh'))
                             <td>
-                                <button type="button" onclick="edit({{$item->id}});" class="btn btn-info"><i class="fa fa-pencil"></i></button>
+                                <a href="{{ route('ruhBelanja.edit', [$item->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
+                                {{-- <button type="button" onclick="edit({{$item->id}});" class="btn btn-info"><i class="fa fa-pencil"></i></button> --}}
                                 <button onclick="$('#delete{{ $key }}').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 <form id="delete{{ $key }}" action="{{ route('ruhBelanja.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
                                     @csrf

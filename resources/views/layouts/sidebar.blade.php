@@ -36,25 +36,20 @@
                     </li>
                 @endif
                 <li>
-                    <a class="waves-effect" href="{{ route('akun.index') }}" aria-expanded="false"><i class="icon-basket fa-fw"></i> <span class="hide-menu"> Akun </span></a>
-                </li>
-                <li>
                     <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-basket fa-fw"></i> <span class="hide-menu"> RAB <span class="label label-rounded label-info pull-right">2</span></span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li> <a href="{{ route('ruhBelanja.index') }}">Ruh Belanja</a> </li>
                         <li> <a href="{{ route('rspp.index') }}">Data RSPP</a> </li>
                     </ul>
                 </li>
-                {{-- <li>
-                    <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-list fa-fw"></i> <span class="hide-menu"> Manage Product <span class="label label-rounded label-info pull-right">3</span></span></a>
+                <li>
+                    <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-list fa-fw"></i> <span class="hide-menu"> Manage Akun <span class="label label-rounded label-info pull-right">2</span></span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li> <a href="{{ route('product.index') }}">Product</a> </li>
-                        <li> <a href="{{ route('master-product.index') }}">Master Product</a> </li>
-                        <li> <a href="{{ route('master-varian.index') }}">Master Varian</a> </li>
-                        <li> <a href="{{ route('product.todoBarcode') }}">Barcode Product</a> </li>
+                        <li> <a href="{{ route('akun.index') }}">Akun</a> </li>
+                        <li> <a href="{{ route('akun-detail.index') }}">Akun Detail</a> </li>
                     </ul>
                 </li>
-                <li>
+                {{-- <li>
                     <a class="waves-effect" href="{{ route('invoice.index') }}" aria-expanded="false"><i class="icon-grid fa-fw"></i> <span class="hide-menu"> Invoice</span></a>
                 </li>
                 <li>
