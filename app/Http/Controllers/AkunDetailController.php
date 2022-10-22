@@ -112,4 +112,40 @@ class AkunDetailController extends Controller
             return redirect()->back()->with('danger', $th);
         }
     }
+
+    public function akunDetailCreate2($id)
+    {
+        try {
+            $data = Akun::findOrFail($id);
+    
+            return view('ruhBelanja.createAkunDetail', ['data' => $data]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('danger', $th);
+        }
+    }
+
+    public function akunDetailStore2(Request $request)
+    {
+        $data = $request->all();
+        foreach ($data['akun_id'] as $key => $id) {
+            try {
+                $datas['akun_id'] = $id;
+                $datas['name'] = $data['name'][$key];
+                $datas['price'] = $data['price'][$key];
+                $datas['qty'] = $data['qty'][$key];
+                $datas['category'] = $data['category'][$key];
+                $datas['uom'] = $data['uom'][$key];
+                $datas['address'] = $data['address'][$key];
+                $subKomponen = AkunDetail::create($datas);
+            } catch (\Throwable $th) {
+                continue;
+            }
+        }
+        
+        return redirect()->back()->with('success', 'Berhasil Input Komponen');
+        // try {
+        // } catch (\Throwable $th) {
+        //     return redirect()->back()->with('danger', $th);
+        // }
+    }
 }

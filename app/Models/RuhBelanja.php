@@ -14,4 +14,9 @@ class RuhBelanja extends Model
     {
         return $this->hasOne(Rspp::class);
     }
+
+    public function akunRuhBelanja()
+    {
+        return $this->hasMany(AkunRuhBelanja::class);
+    }
 }

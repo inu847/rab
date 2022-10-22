@@ -38,6 +38,8 @@ Route::get('ruh-belanja/insertAkun/{id}', [RuhBelanjaController::class, 'insertA
 Route::resource('akun-ruh-belanja', AkunRuhBelanjaController::class);
 Route::resource('akun', AkunController::class);
 Route::resource('akun-detail', AkunDetailController::class);
+Route::get('akun-detail/create2/{id}', [AkunDetailController::class, 'akunDetailCreate2'])->name('akun-detail.create2');
+Route::post('akun-detail/store2', [AkunDetailController::class, 'akunDetailStore2'])->name('akun-detail.store2');
 Route::resource('manage-access', ManageAccessController::class);
 Route::post('storeRspp/{id}', [RuhBelanjaController::class, 'storeRspp'])->name('rspp.storeRspp');
 Route::post('storeKro', [RuhBelanjaController::class, 'storeKro'])->name('rspp.storeKro');
@@ -45,6 +47,8 @@ Route::post('storeRo', [RuhBelanjaController::class, 'storeRo'])->name('rspp.sto
 Route::post('storekomponen', [RuhBelanjaController::class, 'storekomponen'])->name('rspp.storekomponen');
 Route::post('storeSubKomponen', [RuhBelanjaController::class, 'storeSubKomponen'])->name('rspp.storeSubKomponen');
 Route::get('ruh-belanja/create-rspp/{id}', [RuhBelanjaController::class, 'createRspp'])->name('ruhBelanja.createRspp');
+Route::get('ruh-belanja/export-pdf/{id}', [RuhBelanjaController::class, 'exportPdf'])->name('ruhBelanja.export');
+Route::delete('ruh-belanja/delAkunRuhBelanja/{id}', [RuhBelanjaController::class, 'delAkunRuhBelanja'])->name('ruhBelanja.delAkunRuhBelanja');
 
 Route::get('login', [AuthController::class, 'todoLogin'])->name('todoLogin');
 Route::post('login', [AuthController::class, 'login'])->name('login');

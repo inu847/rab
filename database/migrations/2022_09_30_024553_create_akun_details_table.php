@@ -16,6 +16,7 @@ class CreateAkunDetailsTable extends Migration
         Schema::create('akun_details', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('qty');
             $table->integer('price');
             $table->string('category');
             $table->string('uom');

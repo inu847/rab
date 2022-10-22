@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Create RSPP
+    Create Akun
 @endsection
 
 @section('content')
@@ -42,13 +42,22 @@
                 <tr>
                     <th>Kode</th>
                     <th>Nama</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (akun($data->id) as $item)
+                @foreach (akun($data->id) as $key => $item)
                     <tr>
                         <td>{{ $item->akun->code }}</td>
                         <td>{{ $item->akun->name }}</td>
+                        <td>
+                            <a href="{{ route('akun-detail.create2', [$item->id]) }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                            <button onclick="$('#delete{{ $key }}').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            <form id="delete{{ $key }}" action="{{ route('ruhBelanja.delAkunRuhBelanja', [$item->id]) }}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                @method("DELETE")
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

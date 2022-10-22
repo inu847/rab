@@ -14,4 +14,19 @@ class Rspp extends Model
     {
         return $this->belongsTo(RuhBelanja::class, 'ruh_belanja_id', 'id');
     }
+
+    public function kro()
+    {
+        return $this->hasOne(Kro::class);
+    }
+
+    public function ro()
+    {
+        return $this->hasOne(Ro::class);
+    }
+
+    public function komponen()
+    {
+        return $this->hasOne(Komponen::class);
+    }
 }

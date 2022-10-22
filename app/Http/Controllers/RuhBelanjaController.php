@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun;
+use App\Models\AkunDetail;
+use App\Models\AkunRuhBelanja;
 use App\Models\Komponen;
 use App\Models\Kro;
 use App\Models\Ro;
@@ -10,6 +12,7 @@ use App\Models\Rspp;
 use App\Models\RuhBelanja;
 use App\Models\SubKomponen;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RuhBelanjaController extends Controller
 {
@@ -222,5 +225,32 @@ class RuhBelanjaController extends Controller
         $akun = Akun::get();
 
         return view('ruhBelanja.createAkun', ['data' => $data, 'akun' => $akun]);
+    }
+
+    public function exportPdf($id)
+    {
+        $document = RuhBelanja::findOrFail($id);
+
+        $document['total'] = 0;
+        foreach ($document->akunRuhBelanja as $key => $value) {
+            foreach ($value->akun->akunDetail as $ckey => $cvalue) {
+                $document['total'] += $cvalue->qty * $cvalue->price;
+            }
+        }
+
+        // $pdf = PDF::loadView('exportpdf.full', ['document' => $document])->setOptions(['defaultFont' => 'sans-serif']);
+        // return $pdf->setPaper('A4', 'horizontal')->download($document->pegawai->nama.'.pdf');
+        return view('ruhBelanja.pdf', ['document' => $document]);
+    }
+
+    public function delAkunRuhBelanja($id)
+    {
+        try {
+            $data = AkunRuhBelanja::findOrFail($id)->delete();
+    
+            return redirect()->back()->with('success', 'Berhasil Hapus Data');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('danger', $th);
+        }
     }
 }
