@@ -53,6 +53,12 @@
                 </div>
             </div>
             <div class='form-group'>
+                <label for='' class="col-md-12">Quantity</label>
+                <div class="col-md-12">
+                    <input type='text' class='form-control' name='qty' id='' placeholder='Code'>
+                </div>
+            </div>
+            <div class='form-group'>
                 <label for='' class="col-md-12">Price</label>
                 <div class="col-md-12">
                     <input type='text' class='form-control' name='price' id='' placeholder='Code'>
