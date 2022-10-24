@@ -27,12 +27,14 @@
             <div class='form-group'>
                 <label for='' class="col-md-12">Kategori</label>
                 <div class="col-md-12">
-                    <select name="category" class='form-control' id="">
+                    <input type='text' class='form-control' name='category' value="{{ $data->category }}" id='' placeholder=''>
+
+                    {{-- <select name="" class='form-control' id="">
                         <option value="" selected disabled>Pilih Kategori</option>
                         <option value="Uang Harian" {{ ($data->category == 'Uang Harian') ? 'selected':'' }}>Uang Harian</option>
                         <option value="Penginapan" {{ ($data->category == 'Penginapan') ? 'selected':'' }}>Penginapan</option>
                         <option value="Transport" {{ ($data->category == 'Transport') ? 'selected':'' }}>Transport</option>
-                    </select>
+                    </select> --}}
                 </div>
             </div>
             <div class='form-group'>
