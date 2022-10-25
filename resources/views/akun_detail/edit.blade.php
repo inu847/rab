@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <input type='text' class='form-control' name='category' value="{{ $data->category }}" id='' placeholder=''>
 
-                    {{-- <select name="" class='form-control' id="">
+                    {{-- <select name="category" class='form-control' id="">
                         <option value="" selected disabled>Pilih Kategori</option>
                         <option value="Uang Harian" {{ ($data->category == 'Uang Harian') ? 'selected':'' }}>Uang Harian</option>
                         <option value="Penginapan" {{ ($data->category == 'Penginapan') ? 'selected':'' }}>Penginapan</option>
