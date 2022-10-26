@@ -252,7 +252,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                @foreach (collect($document->akunRuhBelanja)->unique('id') as $item)
+                @foreach ($document->akunRuhBelanja as $item)
                     <tr>
                         <td>{{ $item->akun->code }}</td>
                         <td>{{ $item->akun->name }}</td>
