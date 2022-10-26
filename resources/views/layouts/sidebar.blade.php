@@ -48,6 +48,7 @@
                         @if (Auth::guard('user')->user()->role->id == 1)
                             <li> <a href="{{ route('akun.index') }}">Akun</a> </li>
                         @endif
+                        <li> <a href="{{ route('header.index') }}">Akun Header</a> </li>
                         <li> <a href="{{ route('akun-detail.index') }}">Akun Detail</a> </li>
                     </ul>
                 </li>

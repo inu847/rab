@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun;
-use App\Models\AkunDetail;
+use App\Models\Header;
 use Illuminate\Http\Request;
 
-class AkunDetailController extends Controller
+class HeaderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class AkunDetailController extends Controller
      */
     public function index()
     {
-        $data = AkunDetail::orderBy('id', 'desc')->get();
+        $data = Header::get();
 
-        return view('akun_detail.index', ['data' => $data]);
+        return view('header.index', ['data' => $data]);
     }
 
     /**
@@ -29,7 +29,7 @@ class AkunDetailController extends Controller
     {
         $data = Akun::get();
 
-        return view('akun_detail.create', ['data' => $data]);
+        return view('header.create', ['data' => $data]);
     }
 
     /**
@@ -43,9 +43,9 @@ class AkunDetailController extends Controller
         try {
             $data = $request->all();
 
-            $create = AkunDetail::create($data);
+            $create = Header::create($data);
 
-            return redirect()->route('akun-detail.index')->with('success', 'Berhasil Input Data');
+            return redirect()->route('header.index')->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
         }
@@ -70,10 +70,10 @@ class AkunDetailController extends Controller
      */
     public function edit($id)
     {
-        $data = AkunDetail::findOrFail($id);
+        $data = Header::findOrFail($id);
         $akun = Akun::get();
 
-        return view('akun_detail.edit', ['data' => $data, 'akun' => $akun]);
+        return view('header.edit', ['data' => $data, 'akun' => $akun]);
     }
 
     /**
@@ -88,9 +88,9 @@ class AkunDetailController extends Controller
         try {
             $data = $request->all();
             
-            $role = AkunDetail::findOrFail($id)->update($data);
+            $role = Header::findOrFail($id)->update($data);
 
-            return redirect()->route('akun-detail.index')->with('success', 'Berhasil Ubah Data');
+            return redirect()->route('header.index')->with('success', 'Berhasil Ubah Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
         }
@@ -105,7 +105,7 @@ class AkunDetailController extends Controller
     public function destroy($id)
     {
         try {
-            $data = AkunDetail::findOrFail($id)->delete();
+            $data = Header::findOrFail($id)->delete();
     
             return redirect()->back()->with('success', 'Berhasil Hapus Data');
         } catch (\Throwable $th) {
@@ -113,39 +113,10 @@ class AkunDetailController extends Controller
         }
     }
 
-    public function akunDetailCreate2($id)
+    public function checkHeader(Request $request)
     {
-        try {
-            $data = Akun::findOrFail($id);
-    
-            return view('ruhBelanja.createAkunDetail', ['data' => $data]);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('danger', $th);
-        }
-    }
+        $data = Akun::findOrFail($request->id)->akunHeader ?? null;
 
-    public function akunDetailStore2(Request $request)
-    {
-        $data = $request->all();
-        foreach ($data['akun_id'] as $key => $id) {
-            try {
-                $datas['akun_id'] = $id;
-                $datas['name'] = $data['name'][$key];
-                $datas['price'] = $data['price'][$key];
-                $datas['qty'] = $data['qty'][$key];
-                $datas['category'] = $data['category'][$key];
-                $datas['uom'] = $data['uom'][$key];
-                $datas['address'] = $data['address'][$key];
-                $subKomponen = AkunDetail::create($datas);
-            } catch (\Throwable $th) {
-                continue;
-            }
-        }
-        
-        return redirect()->back()->with('success', 'Berhasil Input Komponen');
-        // try {
-        // } catch (\Throwable $th) {
-        //     return redirect()->back()->with('danger', $th);
-        // }
+        return response()->json($data);
     }
 }

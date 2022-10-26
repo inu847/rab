@@ -15,11 +15,19 @@
             <div class='form-group'>
                 <label for='' class="col-md-12">Akun</label>
                 <div class="col-md-12">
-                    <select name="akun_id" class='form-control' id="">
-                        <option value="Uang Harian">Pilih Akun</option>
+                    <select name="akun_id" id="akun_id" class='form-control' required>
+                        <option value="" selected disabled>Pilih Akun</option>
                         @foreach ($data as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class='form-group' id="form-header">
+                <label for='' class="col-md-12">Header</label>
+                <div class="col-md-12">
+                    <select name="header_id" id="header_id" class='form-control'>
+                        <option value="" selected>Tidak Header</option>
                     </select>
                 </div>
             </div>
@@ -34,38 +42,83 @@
                     </select>
                 </div>
             </div>
+            {{-- <div class='form-group'>
+                <label for='' class="col-md-12">Kategori</label>
+                <div class="col-md-12">
+                    <input type='text' class='form-control' name='category' id='' placeholder=''>
+                </div>
+            </div> --}}
             <div class='form-group'>
                 <label for='' class="col-md-12">Nama</label>
                 <div class="col-md-12">
-                    <input type='text' class='form-control' name='name' id='' placeholder=''>
+                    <input type='text' class='form-control' name='name' id='' placeholder='' required>
                 </div>
             </div>
             <div class='form-group'>
                 <label for='' class="col-md-12">Nama Kota/Kabupaten</label>
                 <div class="col-md-12">
-                    <input type='text' class='form-control' name='address' id='' placeholder='Code'>
-                </div>
-            </div>
-            <div class='form-group'>
-                <label for='' class="col-md-12">UOM</label>
-                <div class="col-md-12">
-                    <input type='text' class='form-control' name='uom' id='' placeholder='Code'>
+                    <input type='text' class='form-control' name='address' id='' placeholder=''>
                 </div>
             </div>
             <div class='form-group'>
                 <label for='' class="col-md-12">Quantity</label>
                 <div class="col-md-12">
-                    <input type='text' class='form-control' name='qty' id='' placeholder='Code'>
+                    <input type='number' class='form-control' name='qty' id='' placeholder='' required>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">UOM</label>
+                <div class="col-md-12">
+                    <input type='text' class='form-control' name='uom' id='' placeholder='' required>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Quantity 2 <small>*untuk hasil perkalian quantity pertama</small></label>
+                <div class="col-md-12">
+                    <input type='number' class='form-control' name='qty2' id='' placeholder=''>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Uom 2 <small>*untuk hasil perkalian quantity pertama</small></label>
+                <div class="col-md-12">
+                    <input type='text' class='form-control' name='uom2' id='' placeholder=''>
                 </div>
             </div>
             <div class='form-group'>
                 <label for='' class="col-md-12">Price</label>
                 <div class="col-md-12">
-                    <input type='text' class='form-control' name='price' id='' placeholder='Code'>
+                    <input type='number' class='form-control' name='price' id='' placeholder='' required>
                 </div>
             </div>
             <button type='submit' class='btn btn-primary'>Submit</button>
         </form>
     </div>
 </div>
+
+<script src="{{ asset('assets/plugins/components/jquery/dist/jquery.min.js') }}"></script>
+<script>
+    $(document).on('change', '#akun_id', function () {
+        var id = $(this).val();
+        console.log(id);
+        var postForm = {
+            'id'     : id,
+            '_token'     : '{{ csrf_token() }}'
+        };
+        $.ajax({
+            url: '{{ route("akun.checkHeader") }}', 
+            type: 'POST', 
+            data : postForm,
+            dataType  : 'json',
+        })
+        .done(function(data) {
+            $('#form-header').show();
+            data.forEach(res => {
+                $('#header_id').append(`<option value="`+res.id+`">`+res.name+`</option>`);
+            });
+        })
+        .fail(function() {
+            alert('Load data failed.');
+        });
+    })
+</script>
 @endsection

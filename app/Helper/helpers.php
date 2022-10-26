@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Akun;
+use App\Models\AkunDetail;
 use App\Models\AkunRuhBelanja;
 use App\Models\InventoryStock;
 use App\Models\Komponen;
@@ -80,5 +81,22 @@ use Illuminate\Support\Facades\Auth;
         $akun = AkunRuhBelanja::where('ruh_belanja_id', $id)->get();
         
         return $akun;
+    }
+
+    function subAkunDetail($akun_id, $id_header)
+    {
+        $subAkunDetail = AkunDetail::where('header_id', $id_header)->where('akun_id', $akun_id)->get();
+
+        return $subAkunDetail;
+    }
+
+    function sumSubAkunDetail($akun_id, $id_header)
+    {
+        $sumSubAkunDetail = AkunDetail::where('header_id', $id_header)->where('akun_id', $akun_id)->get();
+        $result = 0;
+        foreach ($sumSubAkunDetail as $key => $value) {
+            $result += $value->qty * $value->qty2 * $value->price;
+        }
+        return $result;
     }
 ?>

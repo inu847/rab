@@ -5,6 +5,7 @@ use App\Http\Controllers\AkunDetailController;
 use App\Http\Controllers\AkunRuhBelanjaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\ManageAccessController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RSPPController;
@@ -49,6 +50,8 @@ Route::post('storeSubKomponen', [RuhBelanjaController::class, 'storeSubKomponen'
 Route::get('ruh-belanja/create-rspp/{id}', [RuhBelanjaController::class, 'createRspp'])->name('ruhBelanja.createRspp');
 Route::get('ruh-belanja/export-pdf/{id}', [RuhBelanjaController::class, 'exportPdf'])->name('ruhBelanja.export');
 Route::delete('ruh-belanja/delAkunRuhBelanja/{id}', [RuhBelanjaController::class, 'delAkunRuhBelanja'])->name('ruhBelanja.delAkunRuhBelanja');
+Route::resource('header', HeaderController::class);
+Route::post('checkHeader', [HeaderController::class, 'checkHeader'])->name('akun.checkHeader');
 
 Route::get('login', [AuthController::class, 'todoLogin'])->name('todoLogin');
 Route::post('login', [AuthController::class, 'login'])->name('login');

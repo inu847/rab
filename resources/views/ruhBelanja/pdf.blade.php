@@ -269,23 +269,66 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    @foreach ($item->akun->akunDetail as $detail)
-                        <tr>
-                            <td></td>
-                            <td>- {{ $detail->name }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $detail->qty }}</td>
-                            <td>{{ $detail->uom }}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $detail->qty." ".$detail->uom }}</td>
-                            <td>{{ number_format($detail->price) }}</td>
-                            <td>{{ number_format($detail->qty * $detail->price) }}</td>
-                        </tr>
+                    @php
+                        $header_id = null;
+                    @endphp
+                    @foreach (collect($item->akun->akunDetail)->sortBy('header_id') as $key => $detail)
+                        @if ($detail->header != null && $header_id != $detail->header->id)
+                            @php
+                                $header_id = $detail->header->id;
+                            @endphp
+                            <tr>
+                                <td></td>
+                                <td>> {{ $detail->header->name }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ number_format(sumSubAkunDetail($item->akun->id, $detail->header->id)) }}</td>
+                            </tr>
+                            @foreach (subAkunDetail($item->akun->id, $detail->header->id) as $subAkunDetail)
+                                <tr>
+                                    <td></td>
+                                    <td>- {{ $subAkunDetail->name }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ $subAkunDetail->qty }}</td>
+                                    <td>{{ $subAkunDetail->uom }}</td>
+                                    <td>x</td>
+                                    <td>{{ $subAkunDetail->qty2 }}</td>
+                                    <td>{{ $subAkunDetail->uom2 }}</td>
+                                    <td>{{ $subAkunDetail->qty2 }}</td>
+                                    <td>keg</td>
+                                    <td>{{ $subAkunDetail->qty." ".$subAkunDetail->uom }}</td>
+                                    <td>{{ number_format($subAkunDetail->price) }}</td>
+                                    <td>{{ number_format($subAkunDetail->qty * $subAkunDetail->qty2 * $subAkunDetail->price) }}</td>
+                                </tr>
+                            @endforeach
+                        @elseif($detail->header == null)
+                            <tr>
+                                <td></td>
+                                <td>- {{ $detail->name }}</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ $detail->qty }}</td>
+                                <td>{{ $detail->uom }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{ $detail->qty." ".$detail->uom }}</td>
+                                <td>{{ number_format($detail->price) }}</td>
+                                <td>{{ number_format($detail->qty * $detail->price) }}</td>
+                            </tr>
+                        @endif
                     @endforeach
                 @endforeach
             </tbody>

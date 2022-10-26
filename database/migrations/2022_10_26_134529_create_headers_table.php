@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAkunDetailsTable extends Migration
+class CreateHeadersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateAkunDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('akun_details', function (Blueprint $table) {
+        Schema::create('headers', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->string('name');
-            $table->integer('qty');
-            $table->integer('price');
-            $table->string('category');
-            $table->string('uom');
-            $table->text('address');
             $table->unsignedBigInteger('akun_id')->index();
-            $table->unsignedBigInteger('header_id')->index()->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ class CreateAkunDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('akun_details');
+        Schema::dropIfExists('headers');
     }
 }

@@ -20,4 +20,9 @@ class Akun extends Model
     {
         return $this->hasMany(AkunDetail::class);
     }
+
+    public function akunHeader()
+    {
+        return $this->hasMany(Header::class);
+    }
 }
