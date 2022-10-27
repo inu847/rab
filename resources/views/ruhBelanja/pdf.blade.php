@@ -267,7 +267,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
+                        <td>{{ number_format(sumAkun($item->akun->id)) }}</td>
                     </tr>
                     @php
                         $header_id = null;
@@ -304,11 +304,11 @@
                                     <td>x</td>
                                     <td>{{ $subAkunDetail->qty2 }}</td>
                                     <td>{{ $subAkunDetail->uom2 }}</td>
-                                    <td>{{ $subAkunDetail->qty2 }}</td>
-                                    <td>keg</td>
+                                    <td>{{ $subAkunDetail->qty3 }}</td>
+                                    <td>{{ $subAkunDetail->uom3 }}</td>
                                     <td>{{ $subAkunDetail->qty." ".$subAkunDetail->uom }}</td>
                                     <td>{{ number_format($subAkunDetail->price) }}</td>
-                                    <td>{{ number_format($subAkunDetail->qty * $subAkunDetail->qty2 * $subAkunDetail->price) }}</td>
+                                    <td>{{ number_format(($subAkunDetail->qty ?? 1) * ($subAkunDetail->qty2 ?? 1) * ($subAkunDetail->qty3 ?? 1) * ($subAkunDetail->price ?? 1)) }}</td>
                                 </tr>
                             @endforeach
                         @elseif($detail->header == null)
@@ -319,14 +319,14 @@
                                 <td></td>
                                 <td>{{ $detail->qty }}</td>
                                 <td>{{ $detail->uom }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>x</td>
+                                <td>{{ $detail->qty2 }}</td>
+                                <td>{{ $detail->uom2 }}</td>
+                                <td>{{ $detail->qty3 }}</td>
+                                <td>{{ $detail->uom3 }}</td>
                                 <td>{{ $detail->qty." ".$detail->uom }}</td>
                                 <td>{{ number_format($detail->price) }}</td>
-                                <td>{{ number_format($detail->qty * $detail->price) }}</td>
+                                <td>{{ number_format(($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1) * ($detail->price ?? 1)) }}</td>
                             </tr>
                         @endif
                     @endforeach

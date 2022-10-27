@@ -9,7 +9,7 @@ class AkunDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'qty', 'qty2', 'price', 'category', 'akun_id', 'uom', 'uom2', 'address', 'header_id'];
+    protected $fillable = ['name', 'qty', 'qty2', 'qty3', 'price', 'category', 'akun_id', 'uom', 'uom2', 'uom3', 'address', 'header_id'];
 
     public function akun()
     {

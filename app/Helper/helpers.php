@@ -99,4 +99,19 @@ use Illuminate\Support\Facades\Auth;
         }
         return $result;
     }
+
+    function sumAkun($akun_id)
+    {
+        $akun = AkunDetail::where('akun_id', $akun_id)->get();
+        $result = 0;
+        foreach ($akun as $key => $value) {
+            $qty = $value->qty ?? 1;
+            $qty2 = $value->qty2 ?? 1;
+            $qty3 = $value->qty3 ?? 1;
+            $price = $value->price ?? 1;
+            $result += $qty * $qty2 * $qty3 * $price;
+        }
+
+        return $result;
+    }
 ?>

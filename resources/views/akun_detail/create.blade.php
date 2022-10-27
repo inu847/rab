@@ -73,15 +73,27 @@
                 </div>
             </div>
             <div class='form-group'>
-                <label for='' class="col-md-12">Quantity 2 <small>*untuk hasil perkalian quantity pertama</small></label>
+                <label for='' class="col-md-12">Quantity 2</label>
                 <div class="col-md-12">
                     <input type='number' class='form-control' name='qty2' id='' placeholder=''>
                 </div>
             </div>
             <div class='form-group'>
-                <label for='' class="col-md-12">Uom 2 <small>*untuk hasil perkalian quantity pertama</small></label>
+                <label for='' class="col-md-12">Uom 2</label>
                 <div class="col-md-12">
                     <input type='text' class='form-control' name='uom2' id='' placeholder=''>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Quantity 3</label>
+                <div class="col-md-12">
+                    <input type='number' class='form-control' name='qty3' id='' placeholder=''>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Uom 3</label>
+                <div class="col-md-12">
+                    <input type='text' class='form-control' name='uom3' id='' placeholder=''>
                 </div>
             </div>
             <div class='form-group'>
