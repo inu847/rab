@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Akun;
 use App\Models\AkunDetail;
+use App\Models\AkunRuhBelanja;
 use Illuminate\Http\Request;
 
 class AkunDetailController extends Controller
@@ -27,7 +28,7 @@ class AkunDetailController extends Controller
      */
     public function create()
     {
-        $data = Akun::get();
+        $data = AkunRuhBelanja::get();
 
         return view('akun_detail.create', ['data' => $data]);
     }

@@ -19,6 +19,17 @@
                 </div>
             </div>
             <div class='form-group'>
+                <label for='' class="col-md-12">Ruh Belanja</label>
+                <div class="col-md-12">
+                    <select name="ruh_belanja_id" id="ruh_belanja_id" class='form-control'>
+                        <option value="">Pilih Opsi</option>
+                        @foreach ($data as $item)
+                            <option value="{{ $item->id }}">{{ $item->code_satker."-".$item->name_satker }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
                 <label for='' class="col-md-12">Nama</label>
                 <div class="col-md-12">
                     <input type='text' class='form-control' name='name' id='' placeholder=''>

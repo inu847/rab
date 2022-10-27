@@ -18,7 +18,7 @@
                     <select name="akun_id" id="akun_id" class='form-control' required>
                         <option value="" selected disabled>Pilih Akun</option>
                         @foreach ($data as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->ruhBelanja->code_satker." - ".$item->akun->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -35,7 +35,7 @@
                 <label for='' class="col-md-12">Kategori</label>
                 <div class="col-md-12">
                     <select name="category" class='form-control' id="">
-                        <option value="Uang Harian">Pilih Kategori</option>
+                        <option value="">Pilih Kategori</option>
                         <option value="Uang Harian">Uang Harian</option>
                         <option value="Penginapan">Penginapan</option>
                         <option value="Transport">Transport</option>
@@ -124,9 +124,11 @@
         })
         .done(function(data) {
             $('#form-header').show();
+            var element = `<option value="" selected>Tidak Header</option>`;
             data.forEach(res => {
-                $('#header_id').append(`<option value="`+res.id+`">`+res.name+`</option>`);
+                element += `<option value="`+res.id+`">`+res.name+`</option>`;
             });
+            $('#header_id').html(element);
         })
         .fail(function() {
             alert('Load data failed.');

@@ -306,7 +306,15 @@
                                     <td>{{ $subAkunDetail->uom2 }}</td>
                                     <td>{{ $subAkunDetail->qty3 }}</td>
                                     <td>{{ $subAkunDetail->uom3 }}</td>
-                                    <td>{{ $subAkunDetail->qty." ".$subAkunDetail->uom }}</td>
+                                    @php
+                                        $satuan = null;
+                                        if ($subAkunDetail->category == 'Uang Harian') {
+                                            $satuan = 'OH';
+                                        }elseif ($subAkunDetail->category == 'Transport') {
+                                            $satuan = 'OK';
+                                        }
+                                    @endphp
+                                    <td>{{ ($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1)." ".$satuan }}</td>
                                     <td>{{ number_format($subAkunDetail->price) }}</td>
                                     <td>{{ number_format(($subAkunDetail->qty ?? 1) * ($subAkunDetail->qty2 ?? 1) * ($subAkunDetail->qty3 ?? 1) * ($subAkunDetail->price ?? 1)) }}</td>
                                 </tr>
@@ -324,7 +332,7 @@
                                 <td>{{ $detail->uom2 }}</td>
                                 <td>{{ $detail->qty3 }}</td>
                                 <td>{{ $detail->uom3 }}</td>
-                                <td>{{ $detail->qty." ".$detail->uom }}</td>
+                                <td>{{ ($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1)." ".$detail->uom }}</td>
                                 <td>{{ number_format($detail->price) }}</td>
                                 <td>{{ number_format(($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1) * ($detail->price ?? 1)) }}</td>
                             </tr>

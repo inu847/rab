@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun;
+use App\Models\AkunRuhBelanja;
+use App\Models\RuhBelanja;
 use Illuminate\Http\Request;
 
 class AkunController extends Controller
@@ -26,7 +28,9 @@ class AkunController extends Controller
      */
     public function create()
     {
-        return view('akun.create');
+        $data = RuhBelanja::get();
+
+        return view('akun.create', ['data' => $data]);
     }
 
     /**
@@ -40,7 +44,12 @@ class AkunController extends Controller
         try {
             $data = $request->all();
 
-            $create = Akun::create($data);
+            $akun = Akun::create($data);
+            
+            $dataAkun['status'] = 1;
+            $dataAkun['akun_id'] = $akun->id;
+            $dataAkun['ruh_belanja_id'] = $data['ruh_belanja_id'];
+            $create2 = AkunRuhBelanja::create($dataAkun);
 
             return redirect()->route('akun.index')->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
