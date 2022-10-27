@@ -234,7 +234,11 @@ class RuhBelanjaController extends Controller
         $document['total'] = 0;
         foreach ($document->akunRuhBelanja as $key => $value) {
             foreach ($value->akun->akunDetail as $ckey => $cvalue) {
-                $document['total'] += $cvalue->qty * $cvalue->price;
+                $qty = $cvalue->qty ?? 1;
+                $qty2 = $cvalue->qty2 ?? 1;
+                $qty3 = $cvalue->qty3 ?? 1;
+                $price = $cvalue->price ?? 1;
+                $document['total'] += $qty * $qty2 * $qty3 * $price;
             }
         }
 
