@@ -130,14 +130,23 @@
     .text-bold{
         font-weight: 900;
     }
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    .col-md-6{
+        width: 50%;
+        float: left;
+    }
 </style>
 
 <div class='card'>
     <div class="card-header" style="text-align: center; font-weight: 900; line-height: 1.5px;">
-        <p>RINCIAN ANGGARAN BIAYA</p>
+        {!! $document->kepala_rab !!}
+        {{-- <p>RINCIAN ANGGARAN BIAYA</p>
         <p>PENGADAAN PERALATAN PENGOLAH DATA DAN KOMUNIKASI</p>
         <p>BALAI TEKNIK PERKERETAAPIAN KELAS I WILAYAH JAWA BAGIAN BARAT</p>
-        <p>TAHUN ANGGARAN {{ $document->th_anggaran }}</p>
+        <p>TAHUN ANGGARAN {{ $document->th_anggaran }}</p> --}}
         {{-- <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/kop_surat.png'))) }}" width="100%"> --}}
     </div>
     <div class='card-body'>
@@ -291,7 +300,8 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>{{ number_format(sumSubAkunDetail($item->akun->id, $detail->header->id)) }}</td>
+                                <td></td>
+                                {{-- <td>{{ number_format(sumSubAkunDetail($item->akun->id, $detail->header->id)) }}</td> --}}
                             </tr>
                             @foreach (subAkunDetail($item->akun->id, $detail->header->id) as $subAkunDetail)
                                 <tr>
@@ -348,29 +358,72 @@
             </tfoot>
         </table>
         
-        <table style="margin-left: 400px; margin-left: 65%; margin-top: 40px;" class="text-center">
-            <tr class="text-bold">
-                <td>Bandung, <span style="margin-left: 10px;">Juli 2022</span></td>
-            </tr>
-            <tr class="text-bold">
-                <td>Kuasa Pengguna Anggaran</td>
-            </tr class="text-bold">
-            <tr class="text-bold">
-                <td>Balai Teknik Perkeretaapian Wilayah Jawa Bagian Barat</td>
-            </tr>
+        <div class="row">
+            {{-- TTD KIRI --}}
+            @if (generalSetting()->name_left && generalSetting()->jabatan_left && generalSetting()->nip_left)
+                <div class="col-md-6">
+                    <table style="margin-top: 40px; float: left;" class="text-center">
+                        <tr class="text-bold">
+                            <td>Mengetahui, </td>
+                        </tr>
+                        <tr class="text-bold">
+                            <td>KASUBOIT JALUR DAN BANGUNAN </td>
+                        </tr class="text-bold">
+                        <tr class="text-bold">
+                            <td>KA WILAYAH 1</td>
+                        </tr>
+                        
+                        {{-- SPACER --}}
+                        <tr>
+                            <td colspan="3" height="50px"></td>
+                        </tr>
             
-            {{-- SPACER --}}
-            <tr>
-                <td colspan="3" height="50px"></td>
-            </tr>
+                        <tr>
+                            <td colspan="3">{{ generalSetting()->name_left }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">{{ generalSetting()->jabatan_left }}</td>
+                        </tr>
+                        <tr class="con-2">
+                            <td colspan="3">{{ generalSetting()->nip_left }}</td>
+                        </tr>
+                    </table>
+                </div>
+            @endif
 
-            <tr>
-                <td colspan="3" class="con-1">ERNI BASRI, ST., M.ENG</td>
-            </tr>
-            <tr class="con-2">
-                <td colspan="3">19760813 200212 2 001</td>
-            </tr>
-        </table>
+            {{-- TTD KANAN --}}
+            <div class="col-md-6">
+                <table style="margin-top: 40px; float: right;" class="text-center">
+                    <tr class="text-bold">
+                        <td>Bandung, <span style="margin-left: 10px;">Juli 2022</span></td>
+                    </tr>
+                    <tr class="text-bold">
+                        <td>Penanggun Jawab Kegiatan</td>
+                    </tr>
+                    <tr class="text-bold">
+                        <td>Kuasa Pengguna Anggaran</td>
+                    </tr>
+                    <tr class="text-bold">
+                        <td>Balai Teknik Perkeretaapian Wilayah Jawa Bagian Barat</td>
+                    </tr>
+                    
+                    {{-- SPACER --}}
+                    <tr>
+                        <td colspan="3" height="50px"></td>
+                    </tr>
+        
+                    <tr>
+                        <td colspan="3">{{ generalSetting()->name_right }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">{{ generalSetting()->jabatan_right }}</td>
+                    </tr>
+                    <tr class="con-2">
+                        <td colspan="3">{{ generalSetting()->nip_right }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <div style="page-break-after: always;"></div>

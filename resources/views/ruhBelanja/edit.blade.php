@@ -10,9 +10,13 @@
         <h4 class='box-title'>Edit Ruh Belanja</h4>
         {{-- <div class='col-sm-6'>
         </div> --}}
-        <form class="form-horizontal" action='{{ route('ruhBelanja.update', [$data->id]) }}' method='POST' enctype='multipart/form-data'>
+        <form class="form-horizontal" enctype="multipart/form-data" action='{{ route('ruhBelanja.update', [$data->id]) }}' method='POST'>
             @csrf
             @method('PUT')
+            <div class="form-group">
+                <label for="kepala_rab" class="control-label">Kepala RAB</label>
+                <textarea  id="editor" class="editor form-control" name="kepala_rab" cols="30" rows="5" required>{{ $data->kepala_rab }}</textarea>
+            </div>
             <div class="form-group">
                 <label for="th_anggaran" class="control-label">Tahun Anggaran</label>
                 <input type="integer" id="th_anggaran" class="form-control" value="{{ $data->th_anggaran }}" name="th_anggaran" placeholder="Masukkan Tahun Anggaran" required>
@@ -37,4 +41,15 @@
         </form>
     {{-- </div> --}}
 </div>
+
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script src="{{ asset('assets/plugins/components/jquery/dist/jquery.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.config.toolbar_Basic = [
+            ['Bold', 'Italic', 'Underline']
+        ];
+        CKEDITOR.replace('editor');
+    });
+</script>
 @endsection

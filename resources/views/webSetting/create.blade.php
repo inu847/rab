@@ -49,18 +49,49 @@
                 </div>
             </div>
 
-            <h4 class='box-title'>POS SETTING</h4>
+            <h4 class='box-title'>Tanda Tangan</h4>
             <hr>
 
+            <h3>Kanan</h3>
             <div class='form-group'>
-                <label for='' class="col-md-12">With Scanner</label>
+                <label for='' class="col-md-12">NIP</label>
                 <div class="col-md-12">
-                    <select name='with_scanner' class="form-control" id="">
-                        <option value="1" {{($data->with_scanner == 1) ? 'selected':''}} >Yes</option>
-                        <option value="0" {{($data->with_scanner == 0) ? 'selected':''}} >No</option>
-                    </select>
+                    <input type="text" class="form-control" name="">
                 </div>
             </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Nama</label>
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="">
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Jabatan</label>
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="jabatan_right">
+                </div>
+            </div>
+
+            <h3>Kiri</h3>
+            <div class='form-group'>
+                <label for='' class="col-md-12">NIP</label>
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="">
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Nama</label>
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="">
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='' class="col-md-12">Jabatan</label>
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="">
+                </div>
+            </div>
+
             <button type='submit' class='btn btn-primary'>Submit</button>
         </form>
     </div>
