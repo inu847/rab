@@ -32,8 +32,8 @@
     </table>
 </div>
 
-@if ($data->rspp)
-    <div class="white-box">
+    @if ($data->rspp)
+        <div class="white-box">
             <div class='col-sm-6'>
                 <h4 class='box-title'>RSPP</h4>
             </div>
@@ -56,40 +56,41 @@
                 </tbody>
             </table>
         </div>
-    @endif
-
-    @if (can('rspp'))
-        <div class='white-box'>
-            <div class='row'>
-                <div class='col-sm-12'>
-                    <h4 class='box-title'>Add RSPP</h4>
-                </div>
-                <form class="form-horizontal" action='{{ route('rspp.storeRspp', [$data->id]) }}' method='POST' enctype='multipart/form-data'>
-                    @csrf
-                    <div class="form-group col-md-12">
-                        <div class="row m-b-5">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="code_program" placeholder="Code Program">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="program" placeholder="Program">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="number" class="form-control" name="code_kegiatan" placeholder="Code Kegiatan">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="kegiatan" placeholder="Kegiatan">
-                            </div>
-                        </div>
+    @else
+        @if (can('rspp'))
+            <div class='white-box'>
+                <div class='row'>
+                    <div class='col-sm-12'>
+                        <h4 class='box-title'>Add RSPP</h4>
                     </div>
+                    <form class="form-horizontal" action='{{ route('rspp.storeRspp', [$data->id]) }}' method='POST' enctype='multipart/form-data'>
+                        @csrf
+                        <div class="form-group col-md-12">
+                            <div class="row m-b-5">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="code_program" placeholder="Code Program">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="program" placeholder="Program">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" name="code_kegiatan" placeholder="Code Kegiatan">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="kegiatan" placeholder="Kegiatan">
+                                </div>
+                            </div>
+                        </div>
 
-                    <button type='submit' class='btn btn-primary col-md-12'>Submit</button>
-                </form>
+                        <button type='submit' class='btn btn-primary col-md-12'>Submit</button>
+                    </form>
+                </div>
             </div>
-        </div>
+        @endif
     @endif
+
 
 
 @if ($data->rspp)
