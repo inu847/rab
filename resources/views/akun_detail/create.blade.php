@@ -18,7 +18,7 @@
                     <select name="akun_id" id="akun_id" class='form-control' required>
                         <option value="" selected disabled>Pilih Akun</option>
                         @foreach ($data as $item)
-                            <option value="{{ $item->id }}">{{ $item->ruhBelanja->code_satker." - ".$item->akun->name }}</option>
+                            <option value="{{ $item->akun->id }}">{{ $item->ruhBelanja->code_satker." - ".$item->akun->name }}</option>
                         @endforeach
                     </select>
                 </div>
