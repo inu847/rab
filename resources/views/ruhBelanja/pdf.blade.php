@@ -360,9 +360,9 @@
         
         <div class="row">
             {{-- TTD KIRI --}}
-            @if (generalSetting()->name_left && generalSetting()->jabatan_left && generalSetting()->nip_left)
-                <div class="col-md-6">
-                    <table style="margin-top: 40px; float: left;" class="text-center">
+            <div class="col-md-6">
+                <table style="margin-top: 40px; float: left;" class="text-center">
+                    @if (generalSetting()->name_left && generalSetting()->jabatan_left && generalSetting()->nip_left)
                         <tr class="text-bold">
                             <td>Mengetahui, </td>
                         </tr>
@@ -387,9 +387,9 @@
                         <tr class="con-2">
                             <td colspan="3">{{ generalSetting()->nip_left }}</td>
                         </tr>
-                    </table>
-                </div>
-            @endif
+                    @endif
+                </table>
+            </div>
 
             {{-- TTD KANAN --}}
             <div class="col-md-6">
