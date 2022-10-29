@@ -174,12 +174,12 @@
             <tr>
                 <td width="40%">Volume</td>
                 <td width="10px">:</td>
-                <td></td>
+                <td>{{ $document->volume }}</td>
             </tr>
             <tr>
                 <td width="40%">Satuan Ukur</td>
                 <td width="10px">:</td>
-                <td></td>
+                <td>{{ $document->satuan_ukur }}</td>
             </tr>
             <tr>
                 <td width="40%">Alokasi Dana</td>
@@ -395,7 +395,7 @@
             <div class="col-md-6">
                 <table style="margin-top: 40px; float: right;" class="text-center">
                     <tr class="text-bold">
-                        <td>Bandung, <span style="margin-left: 10px;">Juli 2022</span></td>
+                        <td>{{ $document->tgl_doc }}</span></td>
                     </tr>
                     <tr class="text-bold">
                         <td>Penanggun Jawab Kegiatan</td>

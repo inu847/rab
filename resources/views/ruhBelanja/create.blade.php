@@ -30,6 +30,18 @@
             <label for="name_kl_unit" class="control-label">Name K/L Unit</label>
             <input type="text" id="name_kl_unit" class="form-control" name="name_kl_unit" placeholder="Masukkan Name K/L Unit" required>
         </div>
+        <div class="form-group">
+            <label for="volume" class="control-label">Volume</label>
+            <input type="text" id="volume" class="form-control" name="volume" placeholder="Masukkan Volume" required>
+        </div>
+        <div class="form-group">
+            <label for="satuan_ukur" class="control-label">Satuan Ukur</label>
+            <input type="text" id="satuan_ukur" class="form-control" name="satuan_ukur" placeholder="Masukkan Satuan Ukur" required>
+        </div>
+        <div class="form-group">
+            <label for="tgl_doc" class="control-label">Tangal Dokumen</label>
+            <input type="text" id="tgl_doc" class="form-control" name="tgl_doc" placeholder="Masukkan Tanggal Dokumen" required>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
