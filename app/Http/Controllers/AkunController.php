@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun;
+use App\Models\AkunDetail;
 use App\Models\AkunRuhBelanja;
+use App\Models\Header;
 use App\Models\RuhBelanja;
 use Illuminate\Http\Request;
 
@@ -111,7 +113,9 @@ class AkunController extends Controller
     {
         try {
             $data = Akun::findOrFail($id)->delete();
-    
+            AkunRuhBelanja::where('akun_id', $id)->delete();
+            AkunDetail::where('akun_id', $id)->delete();
+            Header::where('akun_id', $id)->delete();
             return redirect()->back()->with('success', 'Berhasil Hapus Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
