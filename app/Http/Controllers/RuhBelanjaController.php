@@ -110,7 +110,9 @@ class RuhBelanjaController extends Controller
     {
         try {
             $data = RuhBelanja::findOrFail($id)->delete();
-    
+            Rspp::where('ruh_belanja_id', $id)->delete();
+            AkunRuhBelanja::where('ruh_belanja_id', $id)->delete();
+            
             return redirect()->back()->with('success', 'Berhasil Hapus Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
