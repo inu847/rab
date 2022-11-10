@@ -8,25 +8,41 @@ use Illuminate\Database\Eloquent\Model;
 class Rspp extends Model
 {
     use HasFactory;
-    protected $fillable = ['code_program', 'program', 'code_kegiatan', 'kegiatan', 'ruh_belanja_id'];
+    protected $fillable = ['program_id'
+                            ,'kegiatan_id'
+                            ,'kro_id'
+                            ,'ro_id'
+                            ,'komponen_id'
+                            ,'sub_komponen_id'
+                            ,'code'];
 
     public function ruhBelanja()
     {
-        return $this->belongsTo(RuhBelanja::class, 'ruh_belanja_id', 'id');
+        return $this->hasOne(RuhBelanja::class);
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id', 'id');
+    }
+
+    public function kegiatan()
+    {
+        return $this->belongsTo(Kegiatan::class, 'kegiatan_id', 'id');
     }
 
     public function kro()
     {
-        return $this->hasOne(Kro::class);
+        return $this->belongsTo(Kro::class, 'kro_id', 'id');
     }
 
     public function ro()
     {
-        return $this->hasOne(Ro::class);
+        return $this->belongsTo(Ro::class, 'ro_id', 'id');
     }
 
     public function komponen()
     {
-        return $this->hasOne(Komponen::class);
+        return $this->belongsTo(Komponen::class, 'komponen_id', 'id');
     }
 }

@@ -48,6 +48,11 @@ class RuhBelanjaController extends Controller
     {
         try {
             $data = $request->all();
+
+            $dataRspp['code'] = "RAB-".now()->format('YmdHis').rand(10, 99);
+            $rspp = Rspp::create($dataRspp);
+
+            $data['rspp_id'] = $rspp->id;
             $role = RuhBelanja::create($data);
 
             return redirect()->route('ruhBelanja.index')->with('success', 'Berhasil Input Data');
@@ -109,7 +114,9 @@ class RuhBelanjaController extends Controller
     public function destroy($id)
     {
         try {
-            $data = RuhBelanja::findOrFail($id)->delete();
+            $data = RuhBelanja::findOrFail($id);
+            $data->rspp->delete();
+            $data->delete();
             Rspp::where('ruh_belanja_id', $id)->delete();
             AkunRuhBelanja::where('ruh_belanja_id', $id)->delete();
             
@@ -135,87 +142,9 @@ class RuhBelanjaController extends Controller
     {
         try {
             $data = $request->all();
-            $data['ruh_belanja_id'] = $id;
-            $rspp = Rspp::create($data);
+            $rspp = Rspp::findOrFail($id)->update($data);
 
-            return redirect()->back()->with('success', 'Berhasil Input RSPP');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('danger', $th);
-        }
-    }
-
-    public function storeKro(Request $request)
-    {
-        try {
-            $data = $request->all();
-            foreach ($data['rspp_id'] as $key => $id) {
-                $datas['rspp_id'] = $id;
-                $datas['code_kro'] = $data['code_kro'][$key];
-                $datas['kro'] = $data['kro'][$key];
-                $kro = Kro::create($datas);
-            }
-
-            return redirect()->back()->with('success', 'Berhasil Input KRO');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('danger', $th);
-        }
-    }
-
-    public function storeRo(Request $request)
-    {
-        try {
-            $data = $request->all();
-            foreach ($data['kro_id'] as $key => $id) {
-                // dd($data['ro'][1]);
-                $datas['rspp_id'] = Kro::findOrFail($id)->rspp_id;
-                $datas['kro_id'] = $id;
-                $datas['code_ro'] = $data['code_ro'][$key];
-                $datas['ro'] = $data['ro'][$key];
-                $ro = Ro::create($datas);
-            }
-
-            return redirect()->back()->with('success', 'Berhasil Input RO');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('danger', $th);
-        }
-    }
-
-    public function storekomponen(Request $request)
-    {
-        try {
-            $data = $request->all();
-            foreach ($data['ro_id'] as $key => $id) {
-                // dd($data['ro'][1]);
-                $datas['ro_id'] = $id;
-                $datas['rspp_id'] = Ro::findOrFail($id)->rspp_id;
-                $datas['code'] = $data['code'][$key];
-                $datas['name'] = $data['name'][$key];
-                $komponen = Komponen::create($datas);
-            }
-            
-            return redirect()->back()->with('success', 'Berhasil Input Komponen');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('danger', $th);
-        }
-    }
-
-    public function storeSubKomponen(Request $request)
-    {
-        $data = $request->all();
-        foreach ($data['komponen_id'] as $key => $id) {
-            // dd($data['ro'][1]);
-            $datas['komponen_id'] = $id;
-            $datas['rspp_id'] = Komponen::findOrFail($id)->rspp_id;
-            $datas['name'] = $data['name'][$key];
-            $datas['qty'] = $data['qty'][$key];
-            $datas['uom'] = $data['uom'][$key];
-            $datas['price'] = $data['price'][$key];
-            $datas['amount'] = $data['amount'][$key];
-            $subKomponen = SubKomponen::create($datas);
-        }
-        
-        return redirect()->back()->with('success', 'Berhasil Input Komponen');
-        try {
+            return redirect()->back()->with('success', 'Berhasil Input Program');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
         }

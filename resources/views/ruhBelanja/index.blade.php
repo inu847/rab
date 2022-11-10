@@ -30,9 +30,7 @@
                     <th>K/L Unit</th>
                     <th>Tahun Anggaran</th>
                     <th>Tools</th>
-                    @if (can('ruh'))
-                        <th>Action</th>
-                    @endif
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,21 +41,19 @@
                         <td>{{ $item->code_kl_unit.' - '.$item->name_kl_unit }}</td>
                         <td>{{ $item->th_anggaran }}</td>
                         <td>
-                            <a href="{{ route('ruhBelanja.createRspp', [$item->id]) }}" class="btn btn-warning m-3">Rekam Kegiatan</a>
+                            <a href="{{ route('rspp.edit', [$item->id]) }}" class="btn btn-warning m-3">Rekam Kegiatan</a>
                             <a href="{{ route('ruhBelanja.insertAkun', [$item->id]) }}" class="btn btn-primary m-3">Tambah Akun</a>
                         </td>
-                        @if (can('ruh'))
-                            <td>
-                                <a href="{{ route('ruhBelanja.export', [$item->id]) }}" class="btn btn-success"><i class="fa fa-print"></i></a>
-                                <a href="{{ route('ruhBelanja.edit', [$item->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
-                                {{-- <button type="button" onclick="edit({{$item->id}});" class="btn btn-info"><i class="fa fa-pencil"></i></button> --}}
-                                <button onclick="$('#delete{{ $key }}').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                <form id="delete{{ $key }}" action="{{ route('ruhBelanja.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                </form>
-                            </td>
-                        @endif
+                        <td>
+                            <a href="{{ route('ruhBelanja.export', [$item->id]) }}" class="btn btn-success"><i class="fa fa-print"></i></a>
+                            <a href="{{ route('ruhBelanja.edit', [$item->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
+                            {{-- <button type="button" onclick="edit({{$item->id}});" class="btn btn-info"><i class="fa fa-pencil"></i></button> --}}
+                            <button onclick="$('#delete{{ $key }}').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            <form id="delete{{ $key }}" action="{{ route('ruhBelanja.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                @method("DELETE")
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

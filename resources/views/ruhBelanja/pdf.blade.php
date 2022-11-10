@@ -164,12 +164,12 @@
             <tr>
                 <td width="40%">Kegiatan</td>
                 <td width="10px">:</td>
-                <td>{{ $document->rspp->kegiatan ?? null }}</td>
+                <td>{{ $document->rspp->kegiatan->name ?? null }}</td>
             </tr>
             <tr>
                 <td width="40%">Keluaran (KRO)</td>
                 <td width="10px">:</td>
-                <td>{{ $document->rspp->kro->kro ?? null }}</td>
+                <td>{{ $document->rspp->kro->name ?? null }}</td>
             </tr>
             <tr>
                 <td width="40%">Volume</td>

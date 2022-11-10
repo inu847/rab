@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rspp;
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 
-class RSPPController extends Controller
+class KegiatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class RSPPController extends Controller
      */
     public function index()
     {
-        $data = Rspp::orderBy('id', 'desc')->get();
+        $data = Kegiatan::orderBy('id', 'desc')->get();
 
-        return view('rspp.index', ['data' => $data]);
+        return view('kegiatan.index', ['data' => $data]);
     }
 
     /**
@@ -26,7 +26,7 @@ class RSPPController extends Controller
      */
     public function create()
     {
-        return view('rspp.create');
+        return view('kegiatan.create');
     }
 
     /**
@@ -39,9 +39,9 @@ class RSPPController extends Controller
     {
         try {
             $data = $request->all();
-            $role = Rspp::create($data);
+            $role = Kegiatan::create($data);
 
-            return redirect()->route('rspp.index')->with('success', 'Berhasil Input Data');
+            return redirect()->route('kegiatan.index')->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
             dd($th);
             return redirect()->back()->with('danger', $th);
@@ -67,9 +67,9 @@ class RSPPController extends Controller
      */
     public function edit($id)
     {
-        $data = Rspp::findOrFail($id);
+        $data = Kegiatan::findOrFail($id);
 
-        return view('rspp.edit', ['data' => $data]);
+        return view('kegiatan.edit', ['data' => $data]);
     }
 
     /**
@@ -83,9 +83,9 @@ class RSPPController extends Controller
     {
         try {
             $data = $request->all();
-            $role = Rspp::findOrFail($id)->update($data);
+            $role = Kegiatan::findOrFail($id)->update($data);
 
-            return redirect()->route('rspp.index')->with('success', 'Berhasil Input Data');
+            return redirect()->route('kegiatan.index')->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
         }
@@ -100,7 +100,7 @@ class RSPPController extends Controller
     public function destroy($id)
     {
         try {
-            $data = Rspp::findOrFail($id)->delete();
+            $data = Kegiatan::findOrFail($id)->delete();
     
             return redirect()->back()->with('success', 'Berhasil Hapus Data');
         } catch (\Throwable $th) {

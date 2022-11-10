@@ -15,6 +15,10 @@ class CreateRuhBelanjasTable extends Migration
     {
         Schema::create('ruh_belanjas', function (Blueprint $table) {
             $table->id();
+            $table->string('tgl_doc');
+            $table->string('volume');
+            $table->string('satuan_ukur');
+            $table->string('kepala_rab');
             $table->integer('th_anggaran');
             $table->string('code_satker');
             $table->string('name_satker');

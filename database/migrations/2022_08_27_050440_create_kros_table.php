@@ -15,10 +15,8 @@ class CreateKrosTable extends Migration
     {
         Schema::create('kros', function (Blueprint $table) {
             $table->id();
-            $table->string('code_kro');
-            $table->string('kro');
-            $table->unsignedBigInteger('rspp_id');
-            $table->foreign('rspp_id')->references('id')->on('rspps')->onDelete('cascade');
+            $table->string('code');
+            $table->string('name');
             $table->timestamps();
         });
     }

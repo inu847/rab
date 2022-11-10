@@ -22,8 +22,6 @@ class CreateSubKomponensTable extends Migration
             $table->integer('amount');
             $table->unsignedBigInteger('komponen_id');
             $table->foreign('komponen_id')->references('id')->on('komponens')->onDelete('cascade');
-            $table->unsignedBigInteger('rspp_id');
-            $table->foreign('rspp_id')->references('id')->on('rspps')->onDelete('cascade');
             $table->timestamps();
         });
     }
