@@ -13,12 +13,23 @@
         <form class="form-horizontal" action='{{ route('akun-detail.store') }}' method='POST' enctype='multipart/form-data'>
             @csrf
             <div class='form-group'>
+                <label for='' class="col-md-12">Ruh Belanja</label>
+                <div class="col-md-12">
+                    <select name="ruh_belanja_id" id="ruh_belanja_id" class='form-control' required>
+                        <option value="" selected disabled>Pilih Ruh Belanja</option>
+                        @foreach ($ruh_belanja as $item)
+                            <option value="{{ $item->id }}">{{ $item->code_satker." - ".$item->name_satker }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
                 <label for='' class="col-md-12">Akun</label>
                 <div class="col-md-12">
                     <select name="akun_id" id="akun_id" class='form-control' required>
                         <option value="" selected disabled>Pilih Akun</option>
-                        @foreach ($data as $item)
-                            <option value="{{ $item->akun->id }}">{{ $item->ruhBelanja->code_satker." - ".$item->akun->name }}</option>
+                        @foreach ($akun as $item)
+                            <option value="{{ $item->id }}">{{ $item->code." - ".$item->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -27,7 +38,10 @@
                 <label for='' class="col-md-12">Header</label>
                 <div class="col-md-12">
                     <select name="header_id" id="header_id" class='form-control'>
-                        <option value="" selected>Tidak Header</option>
+                        <option value="">Pilih Header</option>
+                        @foreach ($header as $item)
+                            <option value="{{ $item->id }}">{{ $item->code." - ".$item->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -107,32 +121,4 @@
     </div>
 </div>
 
-<script src="{{ asset('assets/plugins/components/jquery/dist/jquery.min.js') }}"></script>
-<script>
-    $(document).on('change', '#akun_id', function () {
-        var id = $(this).val();
-        console.log(id);
-        var postForm = {
-            'id'     : id,
-            '_token'     : '{{ csrf_token() }}'
-        };
-        $.ajax({
-            url: '{{ route("akun.checkHeader") }}', 
-            type: 'POST', 
-            data : postForm,
-            dataType  : 'json',
-        })
-        .done(function(data) {
-            $('#form-header').show();
-            var element = `<option value="" selected>Tidak Header</option>`;
-            data.forEach(res => {
-                element += `<option value="`+res.id+`">`+res.name+`</option>`;
-            });
-            $('#header_id').html(element);
-        })
-        .fail(function() {
-            alert('Load data failed.');
-        });
-    })
-</script>
 @endsection

@@ -8,15 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class RuhBelanja extends Model
 {
     use HasFactory;
-    protected $fillable = ['tgl_doc', 'volume', 'satuan_ukur', 'kepala_rab', 'th_anggaran', 'code_satker', 'name_satker', 'code_kl_unit', 'name_kl_unit'];
+    protected $fillable = ['tgl_doc', 'volume', 'satuan_ukur', 'kepala_rab', 'th_anggaran', 'code_satker', 'name_satker', 'code_kl_unit', 'name_kl_unit', 'rspp_id'];
 
     public function rspp()
     {
-        return $this->hasOne(Rspp::class);
+        return $this->belongsTo(Rspp::class, 'rspp_id', 'id');
     }
 
-    public function akunRuhBelanja()
+    // public function akunRuhBelanja()
+    // {
+    //     return $this->hasMany(AkunRuhBelanja::class);
+    // }
+
+    public function akunDetail()
     {
-        return $this->hasMany(AkunRuhBelanja::class);
+        return $this->hasMany(AkunDetail::class);
     }
 }

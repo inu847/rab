@@ -15,12 +15,8 @@ class CreateRosTable extends Migration
     {
         Schema::create('ros', function (Blueprint $table) {
             $table->id();
-            $table->string('code_ro');
-            $table->string('ro');
-            $table->unsignedBigInteger('kro_id');
-            $table->foreign('kro_id')->references('id')->on('kros')->onDelete('cascade');
-            $table->unsignedBigInteger('rspp_id');
-            $table->foreign('rspp_id')->references('id')->on('rspps')->onDelete('cascade');
+            $table->string('code');
+            $table->string('name');
             $table->timestamps();
         });
     }

@@ -15,11 +15,13 @@ class CreateRsppsTable extends Migration
     {
         Schema::create('rspps', function (Blueprint $table) {
             $table->id();
-            $table->string('code_program');
-            $table->string('program');
-            $table->string('code_kegiatan');
-            $table->string('kegiatan');
-            $table->unsignedBigInteger('ruh_belanja_id');
+            $table->string('code');
+            $table->unsignedBigInteger('program_id')->index()->nullable();
+            $table->unsignedBigInteger('kegiatan_id')->index()->nullable();
+            $table->unsignedBigInteger('kro_id')->index()->nullable();
+            $table->unsignedBigInteger('ro_id')->index()->nullable();
+            $table->unsignedBigInteger('komponen_id')->index()->nullable();
+            $table->unsignedBigInteger('sub_komponen_id')->index()->nullable();
             $table->foreign('ruh_belanja_id')->references('id')->on('ruh_belanjas')->onDelete('cascade');
             $table->timestamps();
         });

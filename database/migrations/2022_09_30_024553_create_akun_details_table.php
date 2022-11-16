@@ -16,13 +16,18 @@ class CreateAkunDetailsTable extends Migration
         Schema::create('akun_details', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('qty');
-            $table->integer('price');
-            $table->string('category');
-            $table->string('uom');
-            $table->text('address');
+            $table->integer('qty')->nullable();
+            $table->string('uom')->nullable();
+            $table->integer('qty2')->nullable();
+            $table->string('uom2')->nullable();
+            $table->integer('qty3')->nullable();
+            $table->string('uom3')->nullable();
+            $table->integer('price')->nullable();
+            $table->string('category')->nullable();
+            $table->text('address')->nullable();
             $table->unsignedBigInteger('akun_id')->index();
             $table->unsignedBigInteger('header_id')->index()->nullable();
+            $table->unsignedBigInteger('ruh_belanja_id')->index();
             $table->timestamps();
         });
     }

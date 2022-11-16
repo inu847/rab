@@ -9,7 +9,7 @@ class AkunDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'qty', 'qty2', 'qty3', 'price', 'category', 'akun_id', 'uom', 'uom2', 'uom3', 'address', 'header_id'];
+    protected $fillable = ['name', 'qty', 'qty2', 'qty3', 'price', 'category', 'akun_id', 'uom', 'uom2', 'uom3', 'address', 'header_id', 'ruh_belanja_id'];
 
     public function akun()
     {
@@ -19,5 +19,10 @@ class AkunDetail extends Model
     public function header()
     {
         return $this->belongsTo(Header::class, 'header_id', 'id');
+    }
+
+    public function ruhBelanja()
+    {
+        return $this->belongsTo(RuhBelanja::class, 'ruh_belanja_id', 'id');
     }
 }

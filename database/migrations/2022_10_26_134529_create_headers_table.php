@@ -17,7 +17,6 @@ class CreateHeadersTable extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->unsignedBigInteger('akun_id')->index();
             $table->timestamps();
         });
     }

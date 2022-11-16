@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
 @section('title')
-    User
+    Komponen
 @endsection
 
 @section('content')
     <div class='white-box'>
         <div class="row">
             <div class="col-sm-10">
-                <h4 class="box-title">List User</h4>
+                <h4 class="box-title">List Komponen</h4>
             </div>
             <div class="col-sm-2">
                 <ul class="list-inline">
                     <li>
-                        <a href="{{ route('user.create') }}" class="btn btn-primary font-16"><i class="icon-plus"></i> Tambah Data</a>
+                        <a href="{{ route('komponen.create') }}" class="btn btn-success font-16"><i class="icon-plus"></i> Tambah Data</a>
                     </li>
                 </ul>
             </div>
@@ -22,9 +22,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
+                    <th>Kode Komponen</th>
+                    <th>Nama Komponen</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -32,13 +31,12 @@
                 @foreach ($data as $key => $item)
                     <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{ $item->username }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{ $item->role->name }}</td>
+                        <td>{{ $item->code }}</td>
+                        <td>{{ $item->name }}</td>
                         <td>
-                            <a href="{{ route('user.edit', [$item->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
+                            <a href="{{ route('komponen.edit', [$item->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a>
                             <button onclick="$('#delete{{ $key }}').submit()" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</button>
-                            <form id="delete{{ $key }}" action="{{ route('user.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
+                            <form id="delete{{ $key }}" action="{{ route('komponen.destroy', [$item->id]) }}" enctype="multipart/form-data" method="POST">
                                 @csrf
                                 @method("DELETE")
                             </form>

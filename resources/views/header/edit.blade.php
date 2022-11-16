@@ -13,7 +13,7 @@
         <form class="form-horizontal" action='{{ route('header.update', [$data->id]) }}' method='POST' enctype='multipart/form-data'>
             @csrf
             @method('PUT')
-            <div class='form-group'>
+            {{-- <div class='form-group'>
                 <label for='' class="col-md-12">Akun</label>
                 <div class="col-md-12">
                     <select name="akun_id" class='form-control' id="">
@@ -23,7 +23,7 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
             <div class='form-group'>
                 <label for='' class="col-md-12">Code</label>
                 <div class="col-md-12">

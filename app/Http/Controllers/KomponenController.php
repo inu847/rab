@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Akun;
-use App\Models\AkunDetail;
-use App\Models\AkunRuhBelanja;
-use App\Models\Header;
-use App\Models\RuhBelanja;
+use App\Models\Komponen;
 use Illuminate\Http\Request;
 
-class AkunController extends Controller
+class KomponenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +14,9 @@ class AkunController extends Controller
      */
     public function index()
     {
-        $data = Akun::get();
+        $data = Komponen::orderBy('id', 'desc')->get();
 
-        return view('akun.index', ['data' => $data]);
+        return view('komponen.index', ['data' => $data]);
     }
 
     /**
@@ -30,9 +26,7 @@ class AkunController extends Controller
      */
     public function create()
     {
-        $data = RuhBelanja::get();
-
-        return view('akun.create', ['data' => $data]);
+        return view('komponen.create');
     }
 
     /**
@@ -45,15 +39,11 @@ class AkunController extends Controller
     {
         try {
             $data = $request->all();
-            $akun = Akun::create($data);
-            
-            // $dataAkun['status'] = 1;
-            // $dataAkun['akun_id'] = $akun->id;
-            // $dataAkun['ruh_belanja_id'] = $data['ruh_belanja_id'];
-            // $create2 = AkunRuhBelanja::create($dataAkun);
+            $role = Komponen::create($data);
 
-            return redirect()->route('akun.index')->with('success', 'Berhasil Input Data');
+            return redirect()->route('komponen.index')->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
+            dd($th);
             return redirect()->back()->with('danger', $th);
         }
     }
@@ -77,9 +67,9 @@ class AkunController extends Controller
      */
     public function edit($id)
     {
-        $data = Akun::findOrFail($id);
+        $data = Komponen::findOrFail($id);
 
-        return view('akun.edit', ['data' => $data]);
+        return view('komponen.edit', ['data' => $data]);
     }
 
     /**
@@ -93,10 +83,9 @@ class AkunController extends Controller
     {
         try {
             $data = $request->all();
-            
-            $role = Akun::findOrFail($id)->update($data);
+            $role = Komponen::findOrFail($id)->update($data);
 
-            return redirect()->route('akun.index')->with('success', 'Berhasil Ubah Data');
+            return redirect()->route('komponen.index')->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
         }
@@ -111,10 +100,8 @@ class AkunController extends Controller
     public function destroy($id)
     {
         try {
-            $data = Akun::findOrFail($id)->delete();
-            AkunRuhBelanja::where('akun_id', $id)->delete();
-            AkunDetail::where('akun_id', $id)->delete();
-            Header::where('akun_id', $id)->delete();
+            $data = Komponen::findOrFail($id)->delete();
+    
             return redirect()->back()->with('success', 'Berhasil Hapus Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);

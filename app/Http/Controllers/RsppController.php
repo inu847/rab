@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Akun;
-use App\Models\AkunDetail;
-use App\Models\AkunRuhBelanja;
-use App\Models\Header;
+use App\Models\Kegiatan;
+use App\Models\Komponen;
+use App\Models\Kro;
+use App\Models\Program;
+use App\Models\Ro;
+use App\Models\Rspp;
 use App\Models\RuhBelanja;
 use Illuminate\Http\Request;
 
-class AkunController extends Controller
+class RsppController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +20,9 @@ class AkunController extends Controller
      */
     public function index()
     {
-        $data = Akun::get();
+        $data = Rspp::orderBy('id', 'desc')->get();
 
-        return view('akun.index', ['data' => $data]);
+        return view('rspp.index', ['data' => $data]);
     }
 
     /**
@@ -30,9 +32,7 @@ class AkunController extends Controller
      */
     public function create()
     {
-        $data = RuhBelanja::get();
-
-        return view('akun.create', ['data' => $data]);
+        return view('rspp.create');
     }
 
     /**
@@ -45,15 +45,11 @@ class AkunController extends Controller
     {
         try {
             $data = $request->all();
-            $akun = Akun::create($data);
-            
-            // $dataAkun['status'] = 1;
-            // $dataAkun['akun_id'] = $akun->id;
-            // $dataAkun['ruh_belanja_id'] = $data['ruh_belanja_id'];
-            // $create2 = AkunRuhBelanja::create($dataAkun);
+            $role = Rspp::create($data);
 
-            return redirect()->route('akun.index')->with('success', 'Berhasil Input Data');
+            return redirect()->route('rspp.index')->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
+            dd($th);
             return redirect()->back()->with('danger', $th);
         }
     }
@@ -77,9 +73,14 @@ class AkunController extends Controller
      */
     public function edit($id)
     {
-        $data = Akun::findOrFail($id);
+        $data = RuhBelanja::findOrFail($id);
+        $program = Program::get();
+        $kegiatan = Kegiatan::get();
+        $kro = Kro::get();
+        $ro = Ro::get();
+        $komponen = Komponen::get();
 
-        return view('akun.edit', ['data' => $data]);
+        return view('rspp.edit', ['data' => $data, 'program' => $program, 'kegiatan' => $kegiatan, 'kro' => $kro, 'ro' => $ro, 'komponen' => $komponen]);
     }
 
     /**
@@ -93,10 +94,9 @@ class AkunController extends Controller
     {
         try {
             $data = $request->all();
-            
-            $role = Akun::findOrFail($id)->update($data);
+            $role = Rspp::findOrFail($id)->update($data);
 
-            return redirect()->route('akun.index')->with('success', 'Berhasil Ubah Data');
+            return redirect()->back()->with('success', 'Berhasil Input Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);
         }
@@ -111,10 +111,8 @@ class AkunController extends Controller
     public function destroy($id)
     {
         try {
-            $data = Akun::findOrFail($id)->delete();
-            AkunRuhBelanja::where('akun_id', $id)->delete();
-            AkunDetail::where('akun_id', $id)->delete();
-            Header::where('akun_id', $id)->delete();
+            $data = Rspp::findOrFail($id)->delete();
+    
             return redirect()->back()->with('success', 'Berhasil Hapus Data');
         } catch (\Throwable $th) {
             return redirect()->back()->with('danger', $th);

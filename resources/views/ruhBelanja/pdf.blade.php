@@ -164,12 +164,12 @@
             <tr>
                 <td width="40%">Kegiatan</td>
                 <td width="10px">:</td>
-                <td>{{ $document->rspp->kegiatan ?? null }}</td>
+                <td>{{ $document->rspp->kegiatan->name ?? null }}</td>
             </tr>
             <tr>
                 <td width="40%">Keluaran (KRO)</td>
                 <td width="10px">:</td>
-                <td>{{ $document->rspp->kro->kro ?? null }}</td>
+                <td>{{ $document->rspp->kro->name ?? null }}</td>
             </tr>
             <tr>
                 <td width="40%">Volume</td>
@@ -261,93 +261,101 @@
                     <td></td>
                     <td></td>
                 </tr>
-                @foreach ($document->akunRuhBelanja as $item)
-                    <tr>
-                        <td>{{ $item->akun->code }}</td>
-                        <td>{{ $item->akun->name }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ number_format(sumAkun($item->akun->id)) }}</td>
-                    </tr>
-                    @php
-                        $header_id = null;
-                    @endphp
-                    @foreach (collect($item->akun->akunDetail)->sortBy('header_id') as $key => $detail)
-                        @if ($detail->header != null && $header_id != $detail->header->id)
-                            @php
-                                $header_id = $detail->header->id;
-                            @endphp
-                            <tr>
-                                <td></td>
-                                <td>> {{ $detail->header->name }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                {{-- <td>{{ number_format(sumSubAkunDetail($item->akun->id, $detail->header->id)) }}</td> --}}
-                            </tr>
-                            @foreach (subAkunDetail($item->akun->id, $detail->header->id) as $subAkunDetail)
+                @php
+                    $akun_id = null;
+                @endphp
+                @foreach (collect($document->akunDetail)->sortBy('akun_id') as $item)
+                    @if ($akun_id != $item->akun_id)
+                        @php
+                            $akun_id = $item->akun_id;
+                        @endphp
+                        <tr>
+                            <td>{{ $item->akun->code }}</td>
+                            <td>{{ $item->akun->name }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ number_format(sumAkun($item->akun->id)) }}</td>
+                        </tr>
+                        @php
+                            $header_id = null;
+                        @endphp
+                        @foreach (collect($document->akunDetail)->sortBy('header_id') as $key => $detail)
+                            @if ($detail->akun_id == $item->akun_id && $detail->header != null && $header_id != $detail->header_id)
+                                @php
+                                    $header_id = $detail->header_id;
+                                @endphp
                                 <tr>
                                     <td></td>
-                                    <td>- {{ $subAkunDetail->name }}</td>
+                                    <td>> {{ $detail->header->name }}</td>
                                     <td></td>
                                     <td></td>
-                                    <td>{{ $subAkunDetail->qty }}</td>
-                                    <td>{{ $subAkunDetail->uom }}</td>
-                                    <td>x</td>
-                                    <td>{{ $subAkunDetail->qty2 }}</td>
-                                    <td>{{ $subAkunDetail->uom2 }}</td>
-                                    <td>{{ $subAkunDetail->qty3 }}</td>
-                                    <td>{{ $subAkunDetail->uom3 }}</td>
-                                    @php
-                                        $satuan = null;
-                                        if ($subAkunDetail->category == 'Uang Harian') {
-                                            $satuan = 'OH';
-                                        }elseif ($subAkunDetail->category == 'Transport') {
-                                            $satuan = 'OK';
-                                        }
-                                    @endphp
-                                    <td>{{ ($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1)." ".$satuan }}</td>
-                                    <td>{{ number_format($subAkunDetail->price) }}</td>
-                                    <td>{{ number_format(($subAkunDetail->qty ?? 1) * ($subAkunDetail->qty2 ?? 1) * ($subAkunDetail->qty3 ?? 1) * ($subAkunDetail->price ?? 1)) }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    {{-- <td>{{ number_format(sumSubAkunDetail($item->akun->id, $detail->header->id)) }}</td> --}}
                                 </tr>
-                            @endforeach
-                        @elseif($detail->header == null)
-                            <tr>
-                                <td></td>
-                                <td>- {{ $detail->name }}</td>
-                                <td></td>
-                                <td></td>
-                                <td>{{ $detail->qty }}</td>
-                                <td>{{ $detail->uom }}</td>
-                                <td>x</td>
-                                <td>{{ $detail->qty2 }}</td>
-                                <td>{{ $detail->uom2 }}</td>
-                                <td>{{ $detail->qty3 }}</td>
-                                <td>{{ $detail->uom3 }}</td>
-                                <td>{{ ($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1)." ".$detail->uom }}</td>
-                                <td>{{ number_format($detail->price) }}</td>
-                                <td>{{ number_format(($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1) * ($detail->price ?? 1)) }}</td>
-                            </tr>
-                        @endif
-                    @endforeach
+                                @foreach (subAkunDetail($item->akun->id, $detail->header->id) as $subAkunDetail)
+                                    <tr>
+                                        <td></td>
+                                        <td>- {{ $subAkunDetail->name }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{ $subAkunDetail->qty }}</td>
+                                        <td>{{ $subAkunDetail->uom }}</td>
+                                        <td>x</td>
+                                        <td>{{ $subAkunDetail->qty2 }}</td>
+                                        <td>{{ $subAkunDetail->uom2 }}</td>
+                                        <td>{{ $subAkunDetail->qty3 }}</td>
+                                        <td>{{ $subAkunDetail->uom3 }}</td>
+                                        @php
+                                            $satuan = null;
+                                            if ($subAkunDetail->category == 'Uang Harian') {
+                                                $satuan = 'OH';
+                                            }elseif ($subAkunDetail->category == 'Transport') {
+                                                $satuan = 'OK';
+                                            }
+                                        @endphp
+                                        <td>{{ ($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1)." ".$satuan }}</td>
+                                        <td>{{ number_format($subAkunDetail->price) }}</td>
+                                        <td>{{ number_format(($subAkunDetail->qty ?? 1) * ($subAkunDetail->qty2 ?? 1) * ($subAkunDetail->qty3 ?? 1) * ($subAkunDetail->price ?? 1)) }}</td>
+                                    </tr>
+                                @endforeach
+                            @elseif($detail->akun_id == $item->akun_id && $detail->header == null)
+                                <tr>
+                                    <td></td>
+                                    <td>- {{ $detail->name }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ $detail->qty }}</td>
+                                    <td>{{ $detail->uom }}</td>
+                                    <td>x</td>
+                                    <td>{{ $detail->qty2 }}</td>
+                                    <td>{{ $detail->uom2 }}</td>
+                                    <td>{{ $detail->qty3 }}</td>
+                                    <td>{{ $detail->uom3 }}</td>
+                                    <td>{{ ($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1)." ".$detail->uom }}</td>
+                                    <td>{{ number_format($detail->price) }}</td>
+                                    <td>{{ number_format(($detail->qty ?? 1) * ($detail->qty2 ?? 1) * ($detail->qty3 ?? 1) * ($detail->price ?? 1)) }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    @endif
                 @endforeach
             </tbody>
             <tfoot>

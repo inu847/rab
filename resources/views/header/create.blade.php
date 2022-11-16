@@ -12,7 +12,7 @@
         </div>
         <form class="form-horizontal" action='{{ route('header.store') }}' method='POST' enctype='multipart/form-data'>
             @csrf
-            <div class='form-group'>
+            {{-- <div class='form-group'>
                 <label for='' class="col-md-12">Akun</label>
                 <div class="col-md-12">
                     <select name="akun_id" class='form-control' id="" required>
@@ -22,7 +22,7 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
             <div class='form-group'>
                 <label for='' class="col-md-12">Code</label>
                 <div class="col-md-12">
