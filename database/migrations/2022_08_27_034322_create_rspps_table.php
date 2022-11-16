@@ -22,7 +22,7 @@ class CreateRsppsTable extends Migration
             $table->unsignedBigInteger('ro_id')->index()->nullable();
             $table->unsignedBigInteger('komponen_id')->index()->nullable();
             $table->unsignedBigInteger('sub_komponen_id')->index()->nullable();
-            $table->foreign('ruh_belanja_id')->references('id')->on('ruh_belanjas')->onDelete('cascade');
+            // $table->foreign('ruh_belanja_id')->references('id')->on('ruh_belanjas')->onDelete('cascade');
             $table->timestamps();
         });
     }
