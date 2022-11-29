@@ -36,8 +36,8 @@
                 <li>
                     <a class="waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-basket fa-fw"></i> <span class="hide-menu"> RSPP <span class="label label-rounded label-info pull-right">5</span></span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li> <a href="{{ route('kegiatan.index') }}">Kegiatan </a> </li>
                         <li> <a href="{{ route('program.index') }}">Program </a> </li>
+                        <li> <a href="{{ route('kegiatan.index') }}">Kegiatan </a> </li>
                         <li> <a href="{{ route('kro.index') }}">Kro </a> </li>
                         <li> <a href="{{ route('ro.index') }}">Ro </a> </li>
                         <li> <a href="{{ route('komponen.index') }}">Komponen </a> </li>

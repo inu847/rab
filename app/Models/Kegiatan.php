@@ -9,5 +9,10 @@ class Kegiatan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['code', 'name'];
+    protected $fillable = ['code', 'name', 'program_id'];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id', 'id');
+    }
 }

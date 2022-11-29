@@ -16,8 +16,8 @@ class GeneralSettingSeeder extends Seeder
     {
         GeneralSetting::create([
             'site_logo' => '/logo/logo.jpg',
-            'site_title1' => 'Rahma Hijab Collection',
-            'site_title2' => 'Rahma Hijab',
+            'site_title1' => 'E-Budgetin',
+            'site_title2' => 'E-Budgetin',
             'address' => 'Jl.Ahmad Yani no 46 Rt 02 Rw 01, Selopuro Blitar',
             'kode_pos' => '66184',
             'phone' => '085730004337',

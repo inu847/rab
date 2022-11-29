@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
+use App\Models\Program;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -26,7 +27,9 @@ class KegiatanController extends Controller
      */
     public function create()
     {
-        return view('kegiatan.create');
+        $program = Program::orderBy('id', 'desc')->get();
+
+        return view('kegiatan.create', ['program' => $program]);
     }
 
     /**
