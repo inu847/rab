@@ -71,8 +71,9 @@ class KegiatanController extends Controller
     public function edit($id)
     {
         $data = Kegiatan::findOrFail($id);
+        $program = Program::orderBy('id', 'desc')->get();
 
-        return view('kegiatan.edit', ['data' => $data]);
+        return view('kegiatan.edit', ['data' => $data, 'program' => $program]);
     }
 
     /**
