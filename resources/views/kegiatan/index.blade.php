@@ -22,6 +22,7 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Program</th>
                     <th>Kode Kegiatan</th>
                     <th>Nama Kegiatan</th>
                     <th>Action</th>
@@ -31,6 +32,7 @@
                 @foreach ($data as $key => $item)
                     <tr>
                         <td>{{$key+1}}</td>
+                        <td>{{ $item->program->code ." - ". $item->program->name }}</td>
                         <td>{{ $item->code }}</td>
                         <td>{{ $item->name }}</td>
                         <td>
